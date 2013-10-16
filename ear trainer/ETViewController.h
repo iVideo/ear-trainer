@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MediaPlayer/MediaPlayer.h>
+#import "ETManager.h"
 
-@interface ETViewController : UIViewController
+
+@interface ETViewController : UIViewController <MPMediaPickerControllerDelegate>
+- (IBAction)showMediaPicker:(id)sender;
 
 @end

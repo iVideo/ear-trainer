@@ -7,6 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C09A9A0F180DB00B001DD5A9 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09A9A0E180DB00B001DD5A9 /* Accelerate.framework */; };
+		C09A9A14180DB1C8001DD5A9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09A9A13180DB1C8001DD5A9 /* AudioToolbox.framework */; };
+		C09A9A17180DB302001DD5A9 /* RingBuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = C09A9A16180DB302001DD5A9 /* RingBuffer.mm */; };
+		C0DDE1D0180DA5C8005FF890 /* NVAllpassFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DDE1BF180DA5C8005FF890 /* NVAllpassFilter.m */; };
+		C0DDE1D1180DA5C8005FF890 /* NVBandpassFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DDE1C1180DA5C8005FF890 /* NVBandpassFilter.m */; };
+		C0DDE1D2180DA5C8005FF890 /* NVBandpassQPeakGainFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DDE1C3180DA5C8005FF890 /* NVBandpassQPeakGainFilter.m */; };
+		C0DDE1D3180DA5C8005FF890 /* NVHighpassFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DDE1C5180DA5C8005FF890 /* NVHighpassFilter.m */; };
+		C0DDE1D4180DA5C8005FF890 /* NVHighShelvingFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DDE1C7180DA5C8005FF890 /* NVHighShelvingFilter.m */; };
+		C0DDE1D5180DA5C8005FF890 /* NVLowpassFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DDE1C9180DA5C8005FF890 /* NVLowpassFilter.m */; };
+		C0DDE1D6180DA5C8005FF890 /* NVLowShelvingFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DDE1CB180DA5C8005FF890 /* NVLowShelvingFilter.m */; };
+		C0DDE1D7180DA5C8005FF890 /* NVNotchFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DDE1CD180DA5C8005FF890 /* NVNotchFilter.m */; };
+		C0DDE1D8180DA5C8005FF890 /* NVPeakingEQFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DDE1CF180DA5C8005FF890 /* NVPeakingEQFilter.m */; };
+		C0DDE1DB180DA5D7005FF890 /* NVDSP.mm in Sources */ = {isa = PBXBuildFile; fileRef = C0DDE1DA180DA5D7005FF890 /* NVDSP.mm */; };
+		C0DDE1F2180DA8FF005FF890 /* AudioFileReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = C0DDE1EB180DA8FF005FF890 /* AudioFileReader.mm */; };
+		C0DDE1F3180DA8FF005FF890 /* AudioFileWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DDE1ED180DA8FF005FF890 /* AudioFileWriter.m */; };
+		C0DDE1F4180DA8FF005FF890 /* Novocaine.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DDE1EF180DA8FF005FF890 /* Novocaine.m */; };
+		C0DDE1F8180DABAB005FF890 /* ETManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = C0DDE1F7180DABAB005FF890 /* ETManager.mm */; };
 		C0E46121180D72CF001AAF9B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E46120180D72CF001AAF9B /* Foundation.framework */; };
 		C0E46123180D72CF001AAF9B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E46122180D72CF001AAF9B /* CoreGraphics.framework */; };
 		C0E46125180D72CF001AAF9B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E46124180D72CF001AAF9B /* UIKit.framework */; };
@@ -14,13 +31,14 @@
 		C0E4612D180D72CF001AAF9B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E4612C180D72CF001AAF9B /* main.m */; };
 		C0E46131180D72CF001AAF9B /* ETAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E46130180D72CF001AAF9B /* ETAppDelegate.m */; };
 		C0E46134180D72CF001AAF9B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0E46132180D72CF001AAF9B /* Main.storyboard */; };
-		C0E46137180D72CF001AAF9B /* ETViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E46136180D72CF001AAF9B /* ETViewController.m */; };
+		C0E46137180D72CF001AAF9B /* ETViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C0E46136180D72CF001AAF9B /* ETViewController.mm */; };
 		C0E46139180D72CF001AAF9B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0E46138180D72CF001AAF9B /* Images.xcassets */; };
 		C0E46140180D72CF001AAF9B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E4613F180D72CF001AAF9B /* XCTest.framework */; };
 		C0E46141180D72CF001AAF9B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E46120180D72CF001AAF9B /* Foundation.framework */; };
 		C0E46142180D72CF001AAF9B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E46124180D72CF001AAF9B /* UIKit.framework */; };
 		C0E4614A180D72CF001AAF9B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0E46148180D72CF001AAF9B /* InfoPlist.strings */; };
 		C0E4614C180D72CF001AAF9B /* ear_trainerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E4614B180D72CF001AAF9B /* ear_trainerTests.m */; };
+		C0E46156180D7371001AAF9B /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E46155180D7370001AAF9B /* MediaPlayer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +52,38 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C09A9A0E180DB00B001DD5A9 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		C09A9A13180DB1C8001DD5A9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		C09A9A15180DB302001DD5A9 /* RingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RingBuffer.h; sourceTree = "<group>"; };
+		C09A9A16180DB302001DD5A9 /* RingBuffer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RingBuffer.mm; sourceTree = "<group>"; };
+		C0DDE1BE180DA5C8005FF890 /* NVAllpassFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVAllpassFilter.h; sourceTree = "<group>"; };
+		C0DDE1BF180DA5C8005FF890 /* NVAllpassFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVAllpassFilter.m; sourceTree = "<group>"; };
+		C0DDE1C0180DA5C8005FF890 /* NVBandpassFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVBandpassFilter.h; sourceTree = "<group>"; };
+		C0DDE1C1180DA5C8005FF890 /* NVBandpassFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVBandpassFilter.m; sourceTree = "<group>"; };
+		C0DDE1C2180DA5C8005FF890 /* NVBandpassQPeakGainFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVBandpassQPeakGainFilter.h; sourceTree = "<group>"; };
+		C0DDE1C3180DA5C8005FF890 /* NVBandpassQPeakGainFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVBandpassQPeakGainFilter.m; sourceTree = "<group>"; };
+		C0DDE1C4180DA5C8005FF890 /* NVHighpassFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVHighpassFilter.h; sourceTree = "<group>"; };
+		C0DDE1C5180DA5C8005FF890 /* NVHighpassFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVHighpassFilter.m; sourceTree = "<group>"; };
+		C0DDE1C6180DA5C8005FF890 /* NVHighShelvingFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVHighShelvingFilter.h; sourceTree = "<group>"; };
+		C0DDE1C7180DA5C8005FF890 /* NVHighShelvingFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVHighShelvingFilter.m; sourceTree = "<group>"; };
+		C0DDE1C8180DA5C8005FF890 /* NVLowpassFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVLowpassFilter.h; sourceTree = "<group>"; };
+		C0DDE1C9180DA5C8005FF890 /* NVLowpassFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVLowpassFilter.m; sourceTree = "<group>"; };
+		C0DDE1CA180DA5C8005FF890 /* NVLowShelvingFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVLowShelvingFilter.h; sourceTree = "<group>"; };
+		C0DDE1CB180DA5C8005FF890 /* NVLowShelvingFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVLowShelvingFilter.m; sourceTree = "<group>"; };
+		C0DDE1CC180DA5C8005FF890 /* NVNotchFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVNotchFilter.h; sourceTree = "<group>"; };
+		C0DDE1CD180DA5C8005FF890 /* NVNotchFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVNotchFilter.m; sourceTree = "<group>"; };
+		C0DDE1CE180DA5C8005FF890 /* NVPeakingEQFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVPeakingEQFilter.h; sourceTree = "<group>"; };
+		C0DDE1CF180DA5C8005FF890 /* NVPeakingEQFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVPeakingEQFilter.m; sourceTree = "<group>"; };
+		C0DDE1D9180DA5D7005FF890 /* NVDSP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVDSP.h; sourceTree = "<group>"; };
+		C0DDE1DA180DA5D7005FF890 /* NVDSP.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NVDSP.mm; sourceTree = "<group>"; };
+		C0DDE1EA180DA8FF005FF890 /* AudioFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileReader.h; sourceTree = "<group>"; };
+		C0DDE1EB180DA8FF005FF890 /* AudioFileReader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AudioFileReader.mm; sourceTree = "<group>"; };
+		C0DDE1EC180DA8FF005FF890 /* AudioFileWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileWriter.h; sourceTree = "<group>"; };
+		C0DDE1ED180DA8FF005FF890 /* AudioFileWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFileWriter.m; sourceTree = "<group>"; };
+		C0DDE1EE180DA8FF005FF890 /* Novocaine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Novocaine.h; sourceTree = "<group>"; };
+		C0DDE1EF180DA8FF005FF890 /* Novocaine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Novocaine.m; sourceTree = "<group>"; };
+		C0DDE1F6180DABAB005FF890 /* ETManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ETManager.h; sourceTree = "<group>"; };
+		C0DDE1F7180DABAB005FF890 /* ETManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ETManager.mm; sourceTree = "<group>"; };
 		C0E4611D180D72CF001AAF9B /* ear trainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ear trainer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0E46120180D72CF001AAF9B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C0E46122180D72CF001AAF9B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -46,13 +96,14 @@
 		C0E46130180D72CF001AAF9B /* ETAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ETAppDelegate.m; sourceTree = "<group>"; };
 		C0E46133180D72CF001AAF9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C0E46135180D72CF001AAF9B /* ETViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ETViewController.h; sourceTree = "<group>"; };
-		C0E46136180D72CF001AAF9B /* ETViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ETViewController.m; sourceTree = "<group>"; };
+		C0E46136180D72CF001AAF9B /* ETViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ETViewController.mm; sourceTree = "<group>"; };
 		C0E46138180D72CF001AAF9B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C0E4613E180D72CF001AAF9B /* ear trainerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ear trainerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0E4613F180D72CF001AAF9B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		C0E46147180D72CF001AAF9B /* ear trainerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ear trainerTests-Info.plist"; sourceTree = "<group>"; };
 		C0E46149180D72CF001AAF9B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C0E4614B180D72CF001AAF9B /* ear_trainerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ear_trainerTests.m; sourceTree = "<group>"; };
+		C0E46155180D7370001AAF9B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +111,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C09A9A14180DB1C8001DD5A9 /* AudioToolbox.framework in Frameworks */,
+				C09A9A0F180DB00B001DD5A9 /* Accelerate.framework in Frameworks */,
+				C0E46156180D7371001AAF9B /* MediaPlayer.framework in Frameworks */,
 				C0E46123180D72CF001AAF9B /* CoreGraphics.framework in Frameworks */,
 				C0E46125180D72CF001AAF9B /* UIKit.framework in Frameworks */,
 				C0E46121180D72CF001AAF9B /* Foundation.framework in Frameworks */,
@@ -79,6 +133,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C0DDE1BD180DA5C8005FF890 /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				C0DDE1BE180DA5C8005FF890 /* NVAllpassFilter.h */,
+				C0DDE1BF180DA5C8005FF890 /* NVAllpassFilter.m */,
+				C0DDE1C0180DA5C8005FF890 /* NVBandpassFilter.h */,
+				C0DDE1C1180DA5C8005FF890 /* NVBandpassFilter.m */,
+				C0DDE1C2180DA5C8005FF890 /* NVBandpassQPeakGainFilter.h */,
+				C0DDE1C3180DA5C8005FF890 /* NVBandpassQPeakGainFilter.m */,
+				C0DDE1C4180DA5C8005FF890 /* NVHighpassFilter.h */,
+				C0DDE1C5180DA5C8005FF890 /* NVHighpassFilter.m */,
+				C0DDE1C6180DA5C8005FF890 /* NVHighShelvingFilter.h */,
+				C0DDE1C7180DA5C8005FF890 /* NVHighShelvingFilter.m */,
+				C0DDE1C8180DA5C8005FF890 /* NVLowpassFilter.h */,
+				C0DDE1C9180DA5C8005FF890 /* NVLowpassFilter.m */,
+				C0DDE1CA180DA5C8005FF890 /* NVLowShelvingFilter.h */,
+				C0DDE1CB180DA5C8005FF890 /* NVLowShelvingFilter.m */,
+				C0DDE1CC180DA5C8005FF890 /* NVNotchFilter.h */,
+				C0DDE1CD180DA5C8005FF890 /* NVNotchFilter.m */,
+				C0DDE1CE180DA5C8005FF890 /* NVPeakingEQFilter.h */,
+				C0DDE1CF180DA5C8005FF890 /* NVPeakingEQFilter.m */,
+			);
+			path = Filters;
+			sourceTree = "<group>";
+		};
+		C0DDE1E9180DA8FF005FF890 /* Novocaine */ = {
+			isa = PBXGroup;
+			children = (
+				C09A9A15180DB302001DD5A9 /* RingBuffer.h */,
+				C09A9A16180DB302001DD5A9 /* RingBuffer.mm */,
+				C0DDE1EA180DA8FF005FF890 /* AudioFileReader.h */,
+				C0DDE1EB180DA8FF005FF890 /* AudioFileReader.mm */,
+				C0DDE1EC180DA8FF005FF890 /* AudioFileWriter.h */,
+				C0DDE1ED180DA8FF005FF890 /* AudioFileWriter.m */,
+				C0DDE1EE180DA8FF005FF890 /* Novocaine.h */,
+				C0DDE1EF180DA8FF005FF890 /* Novocaine.m */,
+			);
+			path = Novocaine;
+			sourceTree = "<group>";
+		};
 		C0E46114180D72CF001AAF9B = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +195,9 @@
 		C0E4611F180D72CF001AAF9B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C09A9A13180DB1C8001DD5A9 /* AudioToolbox.framework */,
+				C09A9A0E180DB00B001DD5A9 /* Accelerate.framework */,
+				C0E46155180D7370001AAF9B /* MediaPlayer.framework */,
 				C0E46120180D72CF001AAF9B /* Foundation.framework */,
 				C0E46122180D72CF001AAF9B /* CoreGraphics.framework */,
 				C0E46124180D72CF001AAF9B /* UIKit.framework */,
@@ -116,8 +213,14 @@
 				C0E46130180D72CF001AAF9B /* ETAppDelegate.m */,
 				C0E46132180D72CF001AAF9B /* Main.storyboard */,
 				C0E46135180D72CF001AAF9B /* ETViewController.h */,
-				C0E46136180D72CF001AAF9B /* ETViewController.m */,
+				C0E46136180D72CF001AAF9B /* ETViewController.mm */,
+				C0DDE1F6180DABAB005FF890 /* ETManager.h */,
+				C0DDE1F7180DABAB005FF890 /* ETManager.mm */,
 				C0E46138180D72CF001AAF9B /* Images.xcassets */,
+				C0DDE1D9180DA5D7005FF890 /* NVDSP.h */,
+				C0DDE1DA180DA5D7005FF890 /* NVDSP.mm */,
+				C0DDE1E9180DA8FF005FF890 /* Novocaine */,
+				C0DDE1BD180DA5C8005FF890 /* Filters */,
 				C0E46127180D72CF001AAF9B /* Supporting Files */,
 			);
 			path = "ear trainer";
@@ -250,8 +353,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0E46137180D72CF001AAF9B /* ETViewController.m in Sources */,
+				C0DDE1D5180DA5C8005FF890 /* NVLowpassFilter.m in Sources */,
+				C0DDE1D3180DA5C8005FF890 /* NVHighpassFilter.m in Sources */,
+				C0DDE1F3180DA8FF005FF890 /* AudioFileWriter.m in Sources */,
+				C09A9A17180DB302001DD5A9 /* RingBuffer.mm in Sources */,
+				C0E46137180D72CF001AAF9B /* ETViewController.mm in Sources */,
 				C0E4612D180D72CF001AAF9B /* main.m in Sources */,
+				C0DDE1D6180DA5C8005FF890 /* NVLowShelvingFilter.m in Sources */,
+				C0DDE1F2180DA8FF005FF890 /* AudioFileReader.mm in Sources */,
+				C0DDE1D7180DA5C8005FF890 /* NVNotchFilter.m in Sources */,
+				C0DDE1F4180DA8FF005FF890 /* Novocaine.m in Sources */,
+				C0DDE1D4180DA5C8005FF890 /* NVHighShelvingFilter.m in Sources */,
+				C0DDE1D1180DA5C8005FF890 /* NVBandpassFilter.m in Sources */,
+				C0DDE1D2180DA5C8005FF890 /* NVBandpassQPeakGainFilter.m in Sources */,
+				C0DDE1DB180DA5D7005FF890 /* NVDSP.mm in Sources */,
+				C0DDE1F8180DABAB005FF890 /* ETManager.mm in Sources */,
+				C0DDE1D8180DA5C8005FF890 /* NVPeakingEQFilter.m in Sources */,
+				C0DDE1D0180DA5C8005FF890 /* NVAllpassFilter.m in Sources */,
 				C0E46131180D72CF001AAF9B /* ETAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,11 +495,13 @@
 		C0E46150180D72CF001AAF9B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ear trainer/ear trainer-Prefix.pch";
 				INFOPLIST_FILE = "ear trainer/ear trainer-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -390,11 +510,13 @@
 		C0E46151180D72CF001AAF9B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ear trainer/ear trainer-Prefix.pch";
 				INFOPLIST_FILE = "ear trainer/ear trainer-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -461,6 +583,7 @@
 				C0E46151180D72CF001AAF9B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C0E46152180D72CF001AAF9B /* Build configuration list for PBXNativeTarget "ear trainerTests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +592,7 @@
 				C0E46154180D72CF001AAF9B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
