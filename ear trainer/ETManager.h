@@ -13,6 +13,9 @@
 #import "AudioFileWriter.h"
 #import "NVDSP.h"
 #import "NVNotchFilter.h"
+#import "NVHighpassFilter.h"
+#import "NVPeakingEQFilter.h"
+#import "ETWaveformImageView.h"
 
 @interface ETManager : NSObject
 {
@@ -20,11 +23,20 @@
     Novocaine *audioManager;
     AudioFileReader *fileReader;
     AudioFileWriter *fileWriter;
-    NVNotchFilter *HPF;
 }
+@property float Myvalue;
 
+@property NVHighpassFilter *notchFilter;
+@property ETWaveformImageView *waveformView;
+
++(ETManager *)sharedInstance;
 
 -(void)createFilters;
-
-
+-(void)setUpAudio;
+-(Novocaine *)getAudioManager;
+-(void)readAudioFileWithURL:(NSURL *)url;
+-(void)pauseAudio;
+-(void)playAudio;
+-(UIImageView *)getWaveform;
+-(void)setFreqFromSliderValue:(float)sliderValue;
 @end

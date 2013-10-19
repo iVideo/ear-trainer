@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C03E428B180F0DFE0070FE22 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C03E428A180F0DFE0070FE22 /* CoreAudio.framework */; };
+		C03E428D180F0E6C0070FE22 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C03E428C180F0E6C0070FE22 /* AVFoundation.framework */; };
 		C09A9A0F180DB00B001DD5A9 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09A9A0E180DB00B001DD5A9 /* Accelerate.framework */; };
 		C09A9A14180DB1C8001DD5A9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09A9A13180DB1C8001DD5A9 /* AudioToolbox.framework */; };
 		C09A9A17180DB302001DD5A9 /* RingBuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = C09A9A16180DB302001DD5A9 /* RingBuffer.mm */; };
+		C0CB23C618109DB00017994B /* ETWaveformImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CB23C518109DB00017994B /* ETWaveformImageView.m */; };
 		C0DDE1D0180DA5C8005FF890 /* NVAllpassFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DDE1BF180DA5C8005FF890 /* NVAllpassFilter.m */; };
 		C0DDE1D1180DA5C8005FF890 /* NVBandpassFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DDE1C1180DA5C8005FF890 /* NVBandpassFilter.m */; };
 		C0DDE1D2180DA5C8005FF890 /* NVBandpassQPeakGainFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DDE1C3180DA5C8005FF890 /* NVBandpassQPeakGainFilter.m */; };
@@ -52,10 +55,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C03E428A180F0DFE0070FE22 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		C03E428C180F0E6C0070FE22 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C09A9A0E180DB00B001DD5A9 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		C09A9A13180DB1C8001DD5A9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		C09A9A15180DB302001DD5A9 /* RingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RingBuffer.h; sourceTree = "<group>"; };
 		C09A9A16180DB302001DD5A9 /* RingBuffer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RingBuffer.mm; sourceTree = "<group>"; };
+		C0CB23C418109DB00017994B /* ETWaveformImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ETWaveformImageView.h; sourceTree = "<group>"; };
+		C0CB23C518109DB00017994B /* ETWaveformImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ETWaveformImageView.m; sourceTree = "<group>"; };
 		C0DDE1BE180DA5C8005FF890 /* NVAllpassFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVAllpassFilter.h; sourceTree = "<group>"; };
 		C0DDE1BF180DA5C8005FF890 /* NVAllpassFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVAllpassFilter.m; sourceTree = "<group>"; };
 		C0DDE1C0180DA5C8005FF890 /* NVBandpassFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVBandpassFilter.h; sourceTree = "<group>"; };
@@ -111,6 +118,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C03E428D180F0E6C0070FE22 /* AVFoundation.framework in Frameworks */,
+				C03E428B180F0DFE0070FE22 /* CoreAudio.framework in Frameworks */,
 				C09A9A14180DB1C8001DD5A9 /* AudioToolbox.framework in Frameworks */,
 				C09A9A0F180DB00B001DD5A9 /* Accelerate.framework in Frameworks */,
 				C0E46156180D7371001AAF9B /* MediaPlayer.framework in Frameworks */,
@@ -195,6 +204,8 @@
 		C0E4611F180D72CF001AAF9B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C03E428C180F0E6C0070FE22 /* AVFoundation.framework */,
+				C03E428A180F0DFE0070FE22 /* CoreAudio.framework */,
 				C09A9A13180DB1C8001DD5A9 /* AudioToolbox.framework */,
 				C09A9A0E180DB00B001DD5A9 /* Accelerate.framework */,
 				C0E46155180D7370001AAF9B /* MediaPlayer.framework */,
@@ -222,6 +233,8 @@
 				C0DDE1E9180DA8FF005FF890 /* Novocaine */,
 				C0DDE1BD180DA5C8005FF890 /* Filters */,
 				C0E46127180D72CF001AAF9B /* Supporting Files */,
+				C0CB23C418109DB00017994B /* ETWaveformImageView.h */,
+				C0CB23C518109DB00017994B /* ETWaveformImageView.m */,
 			);
 			path = "ear trainer";
 			sourceTree = "<group>";
@@ -371,6 +384,7 @@
 				C0DDE1D8180DA5C8005FF890 /* NVPeakingEQFilter.m in Sources */,
 				C0DDE1D0180DA5C8005FF890 /* NVAllpassFilter.m in Sources */,
 				C0E46131180D72CF001AAF9B /* ETAppDelegate.m in Sources */,
+				C0CB23C618109DB00017994B /* ETWaveformImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

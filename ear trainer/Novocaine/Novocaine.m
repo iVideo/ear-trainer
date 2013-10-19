@@ -849,7 +849,36 @@ void sessionPropertyListener(void *                  inClientData,
         [sm checkSessionProperties];
     }
     
+//    if (inID == kAudioSessionProperty_AudioRouteChange)
+//    {
+//        Novocaine *sm = (__bridge Novocaine *)inClientData;
+//        [sm checkSessionProperties];
+//        [sm updateAudioRoute];
+//    }
+    
 }
+
+//- (void)updateAudioRoute {
+//    CFStringRef newRoute;
+//    UInt32 size = sizeof(CFStringRef);
+//    CheckError(AudioSessionGetProperty(kAudioSessionProperty_AudioRoute, &size, &newRoute),
+//               "couldn't get new audio route");
+//    if (newRoute)
+//    {
+//        CFShow(newRoute);
+//        if (CFStringCompare(newRoute, CFSTR("ReceiverAndMicrophone"), (UInt32)NULL)== kCFCompareEqualTo)
+//        {
+//            UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
+//            AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute,sizeof (audioRouteOverride),&audioRouteOverride);
+//        }
+//        else if (CFStringCompare(newRoute, CFSTR("HeadsetInOut"), (UInt32)NULL) == kCFCompareEqualTo)
+//        {
+//            UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_None;
+//            AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute,sizeof (audioRouteOverride),&audioRouteOverride);
+//        }
+//    }
+//}
+
 
 - (void)checkAudioSource {
     // Check what the incoming audio route is.

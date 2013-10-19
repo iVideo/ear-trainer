@@ -14,9 +14,18 @@
 
 @implementation ETViewController
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    etManager = [ETManager sharedInstance];
+    [etManager setUpAudio];
+    [etManager createFilters];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -24,6 +33,41 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (IBAction)pauseAudio:(id)sender {
+    
+    [etManager pauseAudio];
+}
+
+- (IBAction)Play:(id)sender {
+    [etManager playAudio];
+}
+
+
+
+-(UIImageView *)getWaveform
+{
+   return [etManager getWaveform];
+}
+
+
+#pragma mark - Media Picker Methods
+-(void)mediaPicker:(MPMediaPickerController *)mediaPicker didPickMediaItems:(MPMediaItemCollection *)mediaItemCollection
+{
+    NSURL *url = [[[mediaItemCollection items] objectAtIndex:0] valueForProperty:MPMediaItemPropertyAssetURL];
+
+    [etManager readAudioFileWithURL:url];
+   // self.waveform = [etManager getWaveform];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+-(void)mediaPickerDidCancel:(MPMediaPickerController *)mediaPicker
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)showMediaPicker:(id)sender
@@ -34,18 +78,12 @@
     [self presentViewController:mediaPicker animated:YES completion:nil];
 }
 
--(void)mediaPicker:(MPMediaPickerController *)mediaPicker didPickMediaItems:(MPMediaItemCollection *)mediaItemCollection
-{
-    NSURL *url = [[[mediaItemCollection items] objectAtIndex:0] valueForProperty:MPMediaItemPropertyAssetURL];
-    
-    NSLog(@"%@", url);
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
+
+#pragma mark - Filter stuff
 
 
--(void)mediaPickerDidCancel:(MPMediaPickerController *)mediaPicker
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
+- (IBAction)freq:(UISlider *)sender{
+    
+    [etManager setFreqFromSliderValue:sender.value];
 }
 @end
