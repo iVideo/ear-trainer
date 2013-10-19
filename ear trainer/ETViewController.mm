@@ -18,9 +18,13 @@
 {
     [super viewWillAppear:animated];
     
+    if (!etManager) {
+        
+    
     etManager = [ETManager sharedInstance];
     [etManager setUpAudio];
     [etManager createFilters];
+    }
 }
 - (void)viewDidLoad
 {
@@ -81,9 +85,10 @@
 
 #pragma mark - Filter stuff
 
-
 - (IBAction)freq:(UISlider *)sender{
     
-    [etManager setFreqFromSliderValue:sender.value];
+    [etManager setFreqFromSliderValue:sender.value withTag:sender.tag];
 }
+
+
 @end

@@ -47,7 +47,7 @@
 @property (nonatomic, assign) UInt32 numSamplesReadPerPacket;
 @property (nonatomic, assign) UInt32 desiredPrebufferedSamples;
 @property (nonatomic, assign) SInt64 currentFileTime;
-@property (nonatomic, assign) dispatch_source_t callbackTimer;
+@property (nonatomic, strong) dispatch_source_t callbackTimer;
 
 - (void)bufferNewAudio;
 

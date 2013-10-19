@@ -24,7 +24,6 @@
     AudioFileReader *fileReader;
     AudioFileWriter *fileWriter;
 }
-@property float Myvalue;
 
 @property NVHighpassFilter *notchFilter;
 @property ETWaveformImageView *waveformView;
@@ -38,5 +37,6 @@
 -(void)pauseAudio;
 -(void)playAudio;
 -(UIImageView *)getWaveform;
--(void)setFreqFromSliderValue:(float)sliderValue;
+-(void)setFreqFromSliderValue:(float)sliderValue withTag:(int)sliderTag;
+
 @end
