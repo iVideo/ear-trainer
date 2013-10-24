@@ -10,6 +10,8 @@
 
 @interface ETViewController ()
 
+@property (strong, nonatomic) UITapGestureRecognizer *tap;
+
 @end
 
 @implementation ETViewController
@@ -19,17 +21,17 @@
     [super viewWillAppear:animated];
     
     if (!etManager) {
-        
-    
     etManager = [ETManager sharedInstance];
     [etManager setUpAudio];
     [etManager createFilters];
     }
+    
+    
 }
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -55,6 +57,13 @@
 {
    return [etManager getWaveform];
 }
+
+#pragma mark - TextField stuff
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [etManager setGainValue:[textField.text floatValue]];
+}
+
 
 
 #pragma mark - Media Picker Methods
@@ -89,6 +98,25 @@
     
     [etManager setFreqFromSliderValue:sender.value withTag:sender.tag];
 }
+
+#pragma mark - Tap Gesture Recognizer
+- (IBAction)tap:(UITapGestureRecognizer *)sender {
+    
+    [self.gainTextField resignFirstResponder];
+    [self textFieldDidEndEditing:self.gainTextField];
+}
+
+- (IBAction)filterState:(UISwitch *)sender {
+    
+    [etManager filterStateForFilter:sender.tag withState:sender.isOn];
+}
+
+- (IBAction)randomFilter:(UIButton *)sender {
+    
+    
+    self.filterNumber.text = [NSString stringWithFormat:@"%i", [etManager selectRandomFilter]];
+}
+
 
 
 @end

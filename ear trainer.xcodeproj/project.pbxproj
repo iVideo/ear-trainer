@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C03E428B180F0DFE0070FE22 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C03E428A180F0DFE0070FE22 /* CoreAudio.framework */; };
 		C03E428D180F0E6C0070FE22 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C03E428C180F0E6C0070FE22 /* AVFoundation.framework */; };
+		C0924C791816C0CE00A87334 /* ETFilterStateHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C0924C781816C0CE00A87334 /* ETFilterStateHandler.m */; };
 		C09A9A0F180DB00B001DD5A9 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09A9A0E180DB00B001DD5A9 /* Accelerate.framework */; };
 		C09A9A14180DB1C8001DD5A9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09A9A13180DB1C8001DD5A9 /* AudioToolbox.framework */; };
 		C09A9A17180DB302001DD5A9 /* RingBuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = C09A9A16180DB302001DD5A9 /* RingBuffer.mm */; };
@@ -57,6 +58,8 @@
 /* Begin PBXFileReference section */
 		C03E428A180F0DFE0070FE22 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		C03E428C180F0E6C0070FE22 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		C0924C771816C0CE00A87334 /* ETFilterStateHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ETFilterStateHandler.h; sourceTree = "<group>"; };
+		C0924C781816C0CE00A87334 /* ETFilterStateHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ETFilterStateHandler.m; sourceTree = "<group>"; };
 		C09A9A0E180DB00B001DD5A9 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		C09A9A13180DB1C8001DD5A9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		C09A9A15180DB302001DD5A9 /* RingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RingBuffer.h; sourceTree = "<group>"; };
@@ -142,6 +145,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C0924C7A1816C4FB00A87334 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C0924C771816C0CE00A87334 /* ETFilterStateHandler.h */,
+				C0924C781816C0CE00A87334 /* ETFilterStateHandler.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		C0924C7B1816C50700A87334 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				C0DDE1F6180DABAB005FF890 /* ETManager.h */,
+				C0DDE1F7180DABAB005FF890 /* ETManager.mm */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
 		C0DDE1BD180DA5C8005FF890 /* Filters */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,8 +246,8 @@
 				C0E46132180D72CF001AAF9B /* Main.storyboard */,
 				C0E46135180D72CF001AAF9B /* ETViewController.h */,
 				C0E46136180D72CF001AAF9B /* ETViewController.mm */,
-				C0DDE1F6180DABAB005FF890 /* ETManager.h */,
-				C0DDE1F7180DABAB005FF890 /* ETManager.mm */,
+				C0924C7B1816C50700A87334 /* API */,
+				C0924C7A1816C4FB00A87334 /* Model */,
 				C0E46138180D72CF001AAF9B /* Images.xcassets */,
 				C0DDE1D9180DA5D7005FF890 /* NVDSP.h */,
 				C0DDE1DA180DA5D7005FF890 /* NVDSP.mm */,
@@ -377,6 +398,7 @@
 				C0DDE1D7180DA5C8005FF890 /* NVNotchFilter.m in Sources */,
 				C0DDE1F4180DA8FF005FF890 /* Novocaine.m in Sources */,
 				C0DDE1D4180DA5C8005FF890 /* NVHighShelvingFilter.m in Sources */,
+				C0924C791816C0CE00A87334 /* ETFilterStateHandler.m in Sources */,
 				C0DDE1D1180DA5C8005FF890 /* NVBandpassFilter.m in Sources */,
 				C0DDE1D2180DA5C8005FF890 /* NVBandpassQPeakGainFilter.m in Sources */,
 				C0DDE1DB180DA5D7005FF890 /* NVDSP.mm in Sources */,

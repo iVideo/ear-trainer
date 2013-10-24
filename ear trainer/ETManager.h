@@ -16,16 +16,16 @@
 #import "NVHighpassFilter.h"
 #import "NVPeakingEQFilter.h"
 #import "ETWaveformImageView.h"
+#import "ETFilterStateHandler.h"
 
 @interface ETManager : NSObject
 {
     RingBuffer *ringBuffer;
     Novocaine *audioManager;
-    AudioFileReader *fileReader;
     AudioFileWriter *fileWriter;
 }
 
-@property NVHighpassFilter *notchFilter;
+@property (strong, nonatomic) AudioFileReader *fileReader;
 @property ETWaveformImageView *waveformView;
 
 +(ETManager *)sharedInstance;
@@ -38,5 +38,8 @@
 -(void)playAudio;
 -(UIImageView *)getWaveform;
 -(void)setFreqFromSliderValue:(float)sliderValue withTag:(int)sliderTag;
+-(void)setGainValue:(float)value;
+-(void)filterStateForFilter:(int)filterNumber withState:(BOOL)state;
+-(int)selectRandomFilter;
 
 @end

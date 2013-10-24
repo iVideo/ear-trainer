@@ -33,10 +33,11 @@
 @property (nonatomic, assign, getter=getCurrentTime, setter=setCurrentTime:) float currentTime;
 @property (nonatomic, copy) NovocaineInputBlock readerBlock;
 @property (nonatomic, assign) float latency;
+@property (nonatomic, copy, readwrite)   NSURL *audioFileURL;
+
 
 // ----- Read-only ------
 
-@property (nonatomic, copy, readonly)   NSURL *audioFileURL;
 @property (nonatomic, assign, readonly, getter=getDuration) float duration;
 @property (nonatomic, assign, readonly) float samplingRate;
 @property (nonatomic, assign, readonly) UInt32 numChannels;
@@ -53,6 +54,7 @@
 - (void)play;
 - (void)pause;
 - (void)stop;
+-(void)killInstance;
 
 
 @end

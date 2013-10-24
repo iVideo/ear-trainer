@@ -17,9 +17,11 @@
     float QFactor;
     float initialGain;
     float userGain;
+    int currentFilter;
+    ETFilterStateHandler *filterStateHandler;
+    
     
 }
-
 
 @end
 
@@ -74,9 +76,7 @@
         PEQ[i].G = initialGain;
     }
     
-    NSLog(@"k this works too");
-
-    
+    filterStateHandler = [[ETFilterStateHandler alloc] init];
 }
 
 -(Novocaine *)getAudioManager
@@ -86,39 +86,45 @@
 
 -(void)readAudioFileWithURL:(NSURL *)url
 {
-  fileReader = [[AudioFileReader alloc] initWithAudioFileURL:url samplingRate:audioManager.samplingRate numChannels:audioManager.numOutputChannels];
+    if (self.fileReader.playing) {
+        [audioManager pause];
+        [self.fileReader pause];
+    }
     
+    
+    _fileReader = [[AudioFileReader alloc] initWithAudioFileURL:url samplingRate:audioManager.samplingRate numChannels:audioManager.numOutputChannels];
+
   //  self.waveformView = [[ETWaveformImageView alloc] initWithUrl:url];
     
     
-    [fileReader play];
-    fileReader.currentTime = 0.0;
-
-    NSLog(@"adfsdf");
+    _fileReader.currentTime = 0.0;
+    
     [audioManager setOutputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels)
      {
-         [fileReader retrieveFreshAudio:data numFrames:numFrames numChannels:numChannels];
+         [self.fileReader retrieveFreshAudio:data numFrames:numFrames numChannels:numChannels];
          
-         //PEQ[5].centerFrequency = self.Myvalue;
-
+         
          //NSLog(@"Time: %f", fileReader.currentTime);
-         for (int i = 0; i < 10; i++) {
+         for (int i = 0; i < 23; i++) {
              [PEQ[i] filterData:data numFrames:numFrames numChannels:numChannels];
          }
          
      }];
+    
+    
 
-    [audioManager pause];
 }
 
 -(void)pauseAudio
 {
+    [self.fileReader pause];
     [audioManager pause];
 }
 
 -(void)playAudio;
 {
-    
+    [_fileReader play];
+
     [audioManager play];
 }
 
@@ -127,14 +133,37 @@
     return self.waveformView;
 }
 
+#pragma mark - Filter stuff
 -(void)setFreqFromSliderValue:(float)sliderValue withTag:(int)sliderTag
 {
-
   PEQ[sliderTag].centerFrequency = sliderValue;
-
-    
 }
 
+-(void)setGainValue:(float)value
+{
+    userGain = value;
+    
+    for (int i = 0; i < 23; i++) {
+        PEQ[i].G = userGain;
+        NSLog(@"%f", PEQ[i].G);
+    }
+}
+
+-(void)filterStateForFilter:(int)filterNumber withState:(BOOL)state;
+{
+    [filterStateHandler updateFilter:filterNumber withState:state];
+}
+
+-(int)selectRandomFilter
+{
+    
+  currentFilter = [filterStateHandler selectRandomFilter];
+    
+    return currentFilter;
+
+}
+
+#pragma mark - Singleton Instance
 +(ETManager *)sharedInstance
 {
     static ETManager *_sharedInstance = nil;
