@@ -41,5 +41,6 @@
 -(void)setGainValue:(float)value;
 -(void)filterStateForFilter:(int)filterNumber withState:(BOOL)state;
 -(int)selectRandomFilter;
+-(void)turnFilterOn;
 
 @end

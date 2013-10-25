@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -69,7 +69,7 @@
                                     <action selector="freq:" destination="vXZ-lx-hvc" eventType="valueChanged" id="M5k-Ic-5cq"/>
                                 </connections>
                             </slider>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0.0" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6gP-rS-Hp4">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0.0" borderStyle="roundedRect" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6gP-rS-Hp4">
                                 <rect key="frame" x="139" y="234" width="42" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -113,24 +113,40 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6qo-eG-Fzc">
+                                <rect key="frame" x="116" y="459" width="88" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="activate filter">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="activateFilter:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="D6E-F7-5GT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="6qo-eG-Fzc" secondAttribute="trailing" constant="116" id="Un1-Dc-HXL"/>
+                            <constraint firstItem="6qo-eG-Fzc" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="116" id="cnk-Qt-ItR"/>
+                            <constraint firstItem="iWK-ob-cYc" firstAttribute="top" secondItem="6qo-eG-Fzc" secondAttribute="bottom" constant="79" id="g5X-gE-ahx"/>
+                        </constraints>
                         <connections>
-                            <outletCollection property="gestureRecognizers" destination="qTf-Dz-VuI" appends="YES" id="5Z4-SX-75d"/>
+                            <outletCollection property="gestureRecognizers" destination="PTQ-4N-Zgg" appends="YES" id="Mt2-Ur-6dt"/>
                         </connections>
                     </view>
                     <connections>
                         <outlet property="filterNumber" destination="Npx-wh-1rm" id="dB6-4N-qOW"/>
                         <outlet property="gainTextField" destination="6gP-rS-Hp4" id="Lc8-HZ-IVh"/>
+                        <outlet property="tap" destination="PTQ-4N-Zgg" id="o1W-K6-qGF"/>
                         <outlet property="waveform" destination="IFP-O1-2DT" id="TPs-gz-Wkl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="qTf-Dz-VuI">
+                <tapGestureRecognizer id="PTQ-4N-Zgg">
                     <connections>
-                        <action selector="tap:" destination="vXZ-lx-hvc" id="VvB-UK-EBn"/>
-                        <outlet property="delegate" destination="kh9-bI-dsS" id="ehz-Hy-nuT"/>
+                        <action selector="tap:" destination="vXZ-lx-hvc" id="66X-uj-YaJ"/>
+                        <outlet property="delegate" destination="kh9-bI-dsS" id="mPZ-vg-odw"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

@@ -30,19 +30,24 @@
 
 -(void)updateFilter:(int)filterNumber withState:(BOOL)state
 {
-    NSNumber *filterNo = [NSNumber numberWithInteger:filterNumber];
+    NSNumber *filterNo = [NSNumber numberWithInt:filterNumber];
 
+    NSLog(@" state changed of filter %@", filterNo);
+    
     if (state) {
         [activeFilters addObject:filterNo];
     }
     
     else if (!state)
     {
-        [activeFilters removeObjectIdenticalTo:filterNo];
+        NSLog(@"hellohello");
+        [activeFilters removeObject:filterNo];
+        
+        
     }
     
     [activeFilters enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        NSLog(@"%@", obj);
+        NSLog(@"this is inside the array%@", obj);
     }];
 }
 

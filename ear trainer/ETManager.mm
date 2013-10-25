@@ -11,14 +11,16 @@
 @interface ETManager()
 {
     BOOL filterOn;
+    
     // define center frequencies of the bands
     float centerFrequencies[29];
-    NVPeakingEQFilter *PEQ[29];
     float QFactor;
     float initialGain;
     float userGain;
     int currentFilter;
+    
     ETFilterStateHandler *filterStateHandler;
+    NVPeakingEQFilter *PEQ[29];
     
     
 }
@@ -39,6 +41,8 @@
 {
     QFactor = 2.0f;
     initialGain = 0.0f;
+    filterOn = 0;
+    
     centerFrequencies[0] = 31.0f;
     centerFrequencies[1] = 40.0f;
     centerFrequencies[2] = 50.0f;
@@ -105,9 +109,11 @@
          
          
          //NSLog(@"Time: %f", fileReader.currentTime);
-         for (int i = 0; i < 23; i++) {
-             [PEQ[i] filterData:data numFrames:numFrames numChannels:numChannels];
+         
+         if (filterOn){
+             [PEQ[currentFilter] filterData:data numFrames:numFrames numChannels:numChannels];
          }
+         
          
      }];
     
@@ -145,8 +151,20 @@
     
     for (int i = 0; i < 23; i++) {
         PEQ[i].G = userGain;
-        NSLog(@"%f", PEQ[i].G);
+//        NSLog(@"%f", PEQ[i].G);
     }
+}
+
+-(void)turnFilterOn
+{
+    filterOn = 1;
+    [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(turnFilterOff) userInfo:nil repeats:NO];
+    
+}
+
+-(void)turnFilterOff
+{
+    filterOn = 0;
 }
 
 -(void)filterStateForFilter:(int)filterNumber withState:(BOOL)state;

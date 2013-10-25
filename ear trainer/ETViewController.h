@@ -27,6 +27,9 @@
 - (IBAction)tap:(UITapGestureRecognizer *)sender;
 - (IBAction)filterState:(UISwitch *)sender;
 - (IBAction)randomFilter:(UIButton *)sender;
+- (IBAction)activateFilter:(UIButton *)sender;
+
+@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tap;
 
 
 @end
