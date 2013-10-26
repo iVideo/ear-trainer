@@ -47,7 +47,7 @@
 -(void)playAudio;
 -(UIImageView *)getWaveform;
 -(void)setFreqFromSliderValue:(float)sliderValue withTag:(int)sliderTag;
--(void)setGainValue:(NSNumber *)value;
+-(void)setGainValue:(float)value negative:(BOOL)negative;
 -(void)filterStateForFilter:(int)filterNumber withState:(BOOL)state;
 -(int)selectRandomFilter;
 -(void)turnFilterOn;

@@ -146,9 +146,16 @@
   PEQ[sliderTag].centerFrequency = sliderValue;
 }
 
--(void)setGainValue:(NSNumber *)value
+-(void)setGainValue:(float)value negative:(BOOL)negative
 {
-    userGain = [value floatValue];
+    if (negative) {
+        
+        value *= -1;
+    }
+    
+    //NSNumber *gainValue = [NSNumber numberWithFloat:value];
+    
+    userGain = value;
     
     for (int i = 0; i < 23; i++) {
         PEQ[i].G = userGain;

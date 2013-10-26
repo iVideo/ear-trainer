@@ -77,24 +77,11 @@
 {
     self.tap.enabled = NO;
 
+
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-    float number;
+   float number = [[numberFormatter numberFromString:textField.text] floatValue];
     
-    if (negative) {
-        
-        number = [[numberFormatter numberFromString:textField.text] floatValue];
-        
-        number *= -1;
-    }
-    
-    if (!negative) {
-        
-        number = [[numberFormatter numberFromString:textField.text] floatValue];
-    }
-    
-    NSNumber *gainValue = [NSNumber numberWithFloat:number];
-    
-    [etManager setGainValue:gainValue];
+    [etManager setGainValue:number negative:negative];
 }
 
 
@@ -148,12 +135,14 @@
 - (IBAction)cut:(UIButton *)sender {
     
     negative = YES;
-    etManager setGainValue:self.gainTextField
+    [self textFieldDidEndEditing:self.gainTextField];
 }
 
 - (IBAction)boost:(UIButton *)sender {
     
     negative = NO;
+    [self textFieldDidEndEditing:self.gainTextField];
+
 }
 
 #pragma mark - Tap Gesture Recognizer
