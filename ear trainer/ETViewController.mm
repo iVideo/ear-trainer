@@ -9,6 +9,9 @@
 #import "ETViewController.h"
 
 @interface ETViewController ()
+{
+    BOOL negative;
+}
 @end
 
 @implementation ETViewController
@@ -21,9 +24,12 @@
         etManager = [ETManager sharedInstance];
         [etManager setUpAudio];
         [etManager createFilters];
+        [etManager setDelegate:self];
+        [self setInAndOutImageView:NO];
         
        self.tap.enabled = NO;
         [self.gainTextField setDelegate:self];
+        negative = NO;
     }
     
     
@@ -43,6 +49,7 @@
 }
 
 
+#pragma mark - Audio stuff
 - (IBAction)pauseAudio:(id)sender {
     
     [etManager pauseAudio];
@@ -69,7 +76,25 @@
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     self.tap.enabled = NO;
-    [etManager setGainValue:[textField.text floatValue]];
+
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    float number;
+    
+    if (negative) {
+        
+        number = [[numberFormatter numberFromString:textField.text] floatValue];
+        
+        number *= -1;
+    }
+    
+    if (!negative) {
+        
+        number = [[numberFormatter numberFromString:textField.text] floatValue];
+    }
+    
+    NSNumber *gainValue = [NSNumber numberWithFloat:number];
+    
+    [etManager setGainValue:gainValue];
 }
 
 
@@ -110,25 +135,25 @@
     [etManager filterStateForFilter:sender.tag withState:sender.on];
 }
 
-//- (IBAction)randomFilter:(UIButton *)sender {
-//    
-//    
-//}
-
 - (IBAction)activateFilter:(UIButton *)sender {
     
     if(etManager.fileReader.playing){
         self.filterNumber.text = [NSString stringWithFormat:@"%i", [etManager selectRandomFilter]];
         
-        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:etManager selector:@selector(turnFilterOn) userInfo:nil repeats:NO];
-        
-//        NSMethodSignature *sig =  [etManager methodSignatureForSelector:@selector(turnFilterOn)];
-//        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:sig];
-//        [invocation setSelector:@selector(turnFilterOn)];
-//        [NSTimer timerWithTimeInterval:1.0 invocation:invocation repeats:NO];
-        
-       // [etManager turnFilterOn];
+        [NSTimer scheduledTimerWithTimeInterval:1.0 target:etManager selector:@selector(turnFilterOn) userInfo:nil repeats:NO];
+
     }
+}
+
+- (IBAction)cut:(UIButton *)sender {
+    
+    negative = YES;
+    etManager setGainValue:self.gainTextField
+}
+
+- (IBAction)boost:(UIButton *)sender {
+    
+    negative = NO;
 }
 
 #pragma mark - Tap Gesture Recognizer
@@ -136,6 +161,21 @@
     
     [self.gainTextField resignFirstResponder];
    // [self textFieldDidEndEditing:self.gainTextField];
+}
+
+-(void)setInAndOutImageView:(BOOL)filterOn
+{
+    
+    if (filterOn) {
+        
+        [self.inOutImageView setImage:[UIImage imageNamed:@"in button.png"]];
+    }
+    
+    if (!filterOn) {
+        [self.inOutImageView setImage:[UIImage imageNamed:@"out button.png"]];
+    }
+    
+    
 }
 
 

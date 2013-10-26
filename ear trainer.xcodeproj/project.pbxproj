@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		C03E428B180F0DFE0070FE22 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C03E428A180F0DFE0070FE22 /* CoreAudio.framework */; };
 		C03E428D180F0E6C0070FE22 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C03E428C180F0E6C0070FE22 /* AVFoundation.framework */; };
+		C083EFD1181BE2ED00EE7933 /* in button.png in Resources */ = {isa = PBXBuildFile; fileRef = C083EFD0181BE2ED00EE7933 /* in button.png */; };
+		C083EFD3181BF2FC00EE7933 /* out button.png in Resources */ = {isa = PBXBuildFile; fileRef = C083EFD2181BF2FC00EE7933 /* out button.png */; };
 		C0924C791816C0CE00A87334 /* ETFilterStateHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C0924C781816C0CE00A87334 /* ETFilterStateHandler.m */; };
 		C09A9A0F180DB00B001DD5A9 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09A9A0E180DB00B001DD5A9 /* Accelerate.framework */; };
 		C09A9A14180DB1C8001DD5A9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09A9A13180DB1C8001DD5A9 /* AudioToolbox.framework */; };
@@ -58,6 +60,8 @@
 /* Begin PBXFileReference section */
 		C03E428A180F0DFE0070FE22 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		C03E428C180F0E6C0070FE22 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		C083EFD0181BE2ED00EE7933 /* in button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "in button.png"; sourceTree = "<group>"; };
+		C083EFD2181BF2FC00EE7933 /* out button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "out button.png"; sourceTree = "<group>"; };
 		C0924C771816C0CE00A87334 /* ETFilterStateHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ETFilterStateHandler.h; sourceTree = "<group>"; };
 		C0924C781816C0CE00A87334 /* ETFilterStateHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ETFilterStateHandler.m; sourceTree = "<group>"; };
 		C09A9A0E180DB00B001DD5A9 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -263,6 +267,8 @@
 		C0E46127180D72CF001AAF9B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C083EFD2181BF2FC00EE7933 /* out button.png */,
+				C083EFD0181BE2ED00EE7933 /* in button.png */,
 				C0E46128180D72CF001AAF9B /* ear trainer-Info.plist */,
 				C0E46129180D72CF001AAF9B /* InfoPlist.strings */,
 				C0E4612C180D72CF001AAF9B /* main.m */,
@@ -369,6 +375,8 @@
 				C0E46139180D72CF001AAF9B /* Images.xcassets in Resources */,
 				C0E4612B180D72CF001AAF9B /* InfoPlist.strings in Resources */,
 				C0E46134180D72CF001AAF9B /* Main.storyboard in Resources */,
+				C083EFD1181BE2ED00EE7933 /* in button.png in Resources */,
+				C083EFD3181BF2FC00EE7933 /* out button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

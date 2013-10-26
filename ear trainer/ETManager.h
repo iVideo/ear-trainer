@@ -18,6 +18,14 @@
 #import "ETWaveformImageView.h"
 #import "ETFilterStateHandler.h"
 
+@protocol ETManagerDelegate <NSObject>
+@optional
+-(void)setInAndOutImageView:(BOOL)filterOn;
+
+
+
+@end
+
 @interface ETManager : NSObject
 {
     RingBuffer *ringBuffer;
@@ -27,6 +35,7 @@
 
 @property (strong, nonatomic) AudioFileReader *fileReader;
 @property ETWaveformImageView *waveformView;
+@property (weak) id <ETManagerDelegate> delegate;
 
 +(ETManager *)sharedInstance;
 
@@ -38,7 +47,7 @@
 -(void)playAudio;
 -(UIImageView *)getWaveform;
 -(void)setFreqFromSliderValue:(float)sliderValue withTag:(int)sliderTag;
--(void)setGainValue:(float)value;
+-(void)setGainValue:(NSNumber *)value;
 -(void)filterStateForFilter:(int)filterNumber withState:(BOOL)state;
 -(int)selectRandomFilter;
 -(void)turnFilterOn;

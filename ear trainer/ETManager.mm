@@ -8,6 +8,7 @@
 
 #import "ETManager.h"
 
+
 @interface ETManager()
 {
     BOOL filterOn;
@@ -145,19 +146,23 @@
   PEQ[sliderTag].centerFrequency = sliderValue;
 }
 
--(void)setGainValue:(float)value
+-(void)setGainValue:(NSNumber *)value
 {
-    userGain = value;
+    userGain = [value floatValue];
     
     for (int i = 0; i < 23; i++) {
         PEQ[i].G = userGain;
-//        NSLog(@"%f", PEQ[i].G);
+        NSLog(@"%f", PEQ[i].G);
     }
 }
 
 -(void)turnFilterOn
 {
+   
+    
     filterOn = 1;
+    
+    [self.delegate setInAndOutImageView:filterOn];
     [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(turnFilterOff) userInfo:nil repeats:NO];
     
 }
@@ -165,6 +170,7 @@
 -(void)turnFilterOff
 {
     filterOn = 0;
+    [self.delegate setInAndOutImageView:filterOn];
 }
 
 -(void)filterStateForFilter:(int)filterNumber withState:(BOOL)state;

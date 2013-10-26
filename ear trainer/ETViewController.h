@@ -11,7 +11,7 @@
 #import "ETManager.h"
 
 
-@interface ETViewController : UIViewController <MPMediaPickerControllerDelegate, UITextFieldDelegate>
+@interface ETViewController : UIViewController <MPMediaPickerControllerDelegate, UITextFieldDelegate, ETManagerDelegate>
 {
     ETManager *etManager;
 }
@@ -19,6 +19,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *waveform;
 @property (strong, nonatomic) IBOutlet UITextField *gainTextField;
 @property (strong, nonatomic) IBOutlet UILabel *filterNumber;
+@property (strong, nonatomic) IBOutlet UIImageView *inOutImageView;
 
 - (IBAction)showMediaPicker:(id)sender;
 - (IBAction)pauseAudio:(id)sender;
@@ -26,8 +27,9 @@
 - (IBAction)freq:(UISlider *)sender;
 - (IBAction)tap:(UITapGestureRecognizer *)sender;
 - (IBAction)filterState:(UISwitch *)sender;
-- (IBAction)randomFilter:(UIButton *)sender;
 - (IBAction)activateFilter:(UIButton *)sender;
+- (IBAction)cut:(UIButton *)sender;
+- (IBAction)boost:(UIButton *)sender;
 
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tap;
 
