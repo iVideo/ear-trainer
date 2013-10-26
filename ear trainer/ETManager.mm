@@ -165,13 +165,9 @@
 
 -(void)turnFilterOn
 {
-   
-    
     filterOn = 1;
-    
-    [self.delegate setInAndOutImageView:filterOn];
     [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(turnFilterOff) userInfo:nil repeats:NO];
-    
+    [self.delegate setInAndOutImageView:filterOn];
 }
 
 -(void)turnFilterOff
