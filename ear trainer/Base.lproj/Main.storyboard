@@ -48,7 +48,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IFP-O1-2DT">
-                                <rect key="frame" x="40" y="20" width="240" height="128"/>
+                                <rect key="frame" x="45" y="448" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <slider opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5000" minValue="50" maxValue="20000" translatesAutoresizingMaskIntoConstraints="NO" id="CgE-uR-KFP">
@@ -58,10 +58,6 @@
                                     <action selector="freq:" destination="vXZ-lx-hvc" eventType="valueChanged" id="CdP-31-3oR"/>
                                 </connections>
                             </slider>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="u27-vj-7xG">
-                                <rect key="frame" x="85" y="156" width="151" height="2"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </progressView>
                             <slider opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="50" maxValue="20000" translatesAutoresizingMaskIntoConstraints="NO" id="JD3-mO-yiB">
                                 <rect key="frame" x="101" y="193" width="118" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -137,6 +133,11 @@
                                 <rect key="frame" x="20" y="265" width="73" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="NgE-k4-uKy">
+                                <rect key="frame" x="73" y="54" width="174" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="minimumTrackTintColor" red="0.0" green="0.50196081399917603" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -148,6 +149,7 @@
                         <outlet property="filterNumber" destination="Npx-wh-1rm" id="dB6-4N-qOW"/>
                         <outlet property="gainTextField" destination="6gP-rS-Hp4" id="Lc8-HZ-IVh"/>
                         <outlet property="inOutImageView" destination="hQr-Yq-v8g" id="bu8-l8-1iG"/>
+                        <outlet property="playbackSlider" destination="NgE-k4-uKy" id="8dL-g3-NOV"/>
                         <outlet property="tap" destination="PTQ-4N-Zgg" id="o1W-K6-qGF"/>
                         <outlet property="waveform" destination="IFP-O1-2DT" id="TPs-gz-Wkl"/>
                     </connections>

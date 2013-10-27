@@ -20,6 +20,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *gainTextField;
 @property (strong, nonatomic) IBOutlet UILabel *filterNumber;
 @property (strong, nonatomic) IBOutlet UIImageView *inOutImageView;
+@property (strong, nonatomic) IBOutlet UISlider *playbackSlider;
 
 - (IBAction)showMediaPicker:(id)sender;
 - (IBAction)pauseAudio:(id)sender;

@@ -32,6 +32,9 @@
         negative = NO;
     }
     
+    [self.playbackSlider setThumbImage:[UIImage imageNamed:@"sliderthumb.png"] forState:UIControlStateNormal];
+    
+    
     
 }
 

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C03E428B180F0DFE0070FE22 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C03E428A180F0DFE0070FE22 /* CoreAudio.framework */; };
 		C03E428D180F0E6C0070FE22 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C03E428C180F0E6C0070FE22 /* AVFoundation.framework */; };
+		C03E9F80181C53A00011D853 /* sliderthumb.png in Resources */ = {isa = PBXBuildFile; fileRef = C03E9F7F181C53A00011D853 /* sliderthumb.png */; };
 		C083EFD1181BE2ED00EE7933 /* in button.png in Resources */ = {isa = PBXBuildFile; fileRef = C083EFD0181BE2ED00EE7933 /* in button.png */; };
 		C083EFD3181BF2FC00EE7933 /* out button.png in Resources */ = {isa = PBXBuildFile; fileRef = C083EFD2181BF2FC00EE7933 /* out button.png */; };
 		C0924C791816C0CE00A87334 /* ETFilterStateHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C0924C781816C0CE00A87334 /* ETFilterStateHandler.m */; };
@@ -60,6 +61,7 @@
 /* Begin PBXFileReference section */
 		C03E428A180F0DFE0070FE22 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		C03E428C180F0E6C0070FE22 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		C03E9F7F181C53A00011D853 /* sliderthumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderthumb.png; sourceTree = "<group>"; };
 		C083EFD0181BE2ED00EE7933 /* in button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "in button.png"; sourceTree = "<group>"; };
 		C083EFD2181BF2FC00EE7933 /* out button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "out button.png"; sourceTree = "<group>"; };
 		C0924C771816C0CE00A87334 /* ETFilterStateHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ETFilterStateHandler.h; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 		C0E46127180D72CF001AAF9B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C03E9F7F181C53A00011D853 /* sliderthumb.png */,
 				C083EFD2181BF2FC00EE7933 /* out button.png */,
 				C083EFD0181BE2ED00EE7933 /* in button.png */,
 				C0E46128180D72CF001AAF9B /* ear trainer-Info.plist */,
@@ -377,6 +380,7 @@
 				C0E46134180D72CF001AAF9B /* Main.storyboard in Resources */,
 				C083EFD1181BE2ED00EE7933 /* in button.png in Resources */,
 				C083EFD3181BF2FC00EE7933 /* out button.png in Resources */,
+				C03E9F80181C53A00011D853 /* sliderthumb.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
