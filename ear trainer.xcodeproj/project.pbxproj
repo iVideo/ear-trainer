@@ -12,6 +12,7 @@
 		C03E9F80181C53A00011D853 /* sliderthumb.png in Resources */ = {isa = PBXBuildFile; fileRef = C03E9F7F181C53A00011D853 /* sliderthumb.png */; };
 		C083EFD1181BE2ED00EE7933 /* in button.png in Resources */ = {isa = PBXBuildFile; fileRef = C083EFD0181BE2ED00EE7933 /* in button.png */; };
 		C083EFD3181BF2FC00EE7933 /* out button.png in Resources */ = {isa = PBXBuildFile; fileRef = C083EFD2181BF2FC00EE7933 /* out button.png */; };
+		C08F60E9181DCC800023C893 /* ETFilterScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C08F60E8181DCC800023C893 /* ETFilterScreenViewController.m */; };
 		C0924C791816C0CE00A87334 /* ETFilterStateHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C0924C781816C0CE00A87334 /* ETFilterStateHandler.m */; };
 		C09A9A0F180DB00B001DD5A9 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09A9A0E180DB00B001DD5A9 /* Accelerate.framework */; };
 		C09A9A14180DB1C8001DD5A9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09A9A13180DB1C8001DD5A9 /* AudioToolbox.framework */; };
@@ -64,6 +65,8 @@
 		C03E9F7F181C53A00011D853 /* sliderthumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderthumb.png; sourceTree = "<group>"; };
 		C083EFD0181BE2ED00EE7933 /* in button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "in button.png"; sourceTree = "<group>"; };
 		C083EFD2181BF2FC00EE7933 /* out button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "out button.png"; sourceTree = "<group>"; };
+		C08F60E7181DCC800023C893 /* ETFilterScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ETFilterScreenViewController.h; sourceTree = "<group>"; };
+		C08F60E8181DCC800023C893 /* ETFilterScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ETFilterScreenViewController.m; sourceTree = "<group>"; };
 		C0924C771816C0CE00A87334 /* ETFilterStateHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ETFilterStateHandler.h; sourceTree = "<group>"; };
 		C0924C781816C0CE00A87334 /* ETFilterStateHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ETFilterStateHandler.m; sourceTree = "<group>"; };
 		C09A9A0E180DB00B001DD5A9 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -252,6 +255,8 @@
 				C0E46132180D72CF001AAF9B /* Main.storyboard */,
 				C0E46135180D72CF001AAF9B /* ETViewController.h */,
 				C0E46136180D72CF001AAF9B /* ETViewController.mm */,
+				C08F60E7181DCC800023C893 /* ETFilterScreenViewController.h */,
+				C08F60E8181DCC800023C893 /* ETFilterScreenViewController.m */,
 				C0924C7B1816C50700A87334 /* API */,
 				C0924C7A1816C4FB00A87334 /* Model */,
 				C0E46138180D72CF001AAF9B /* Images.xcassets */,
@@ -399,6 +404,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C08F60E9181DCC800023C893 /* ETFilterScreenViewController.m in Sources */,
 				C0DDE1D5180DA5C8005FF890 /* NVLowpassFilter.m in Sources */,
 				C0DDE1D3180DA5C8005FF890 /* NVHighpassFilter.m in Sources */,
 				C0DDE1F3180DA8FF005FF890 /* AudioFileWriter.m in Sources */,

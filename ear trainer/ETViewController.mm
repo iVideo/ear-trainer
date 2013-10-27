@@ -174,4 +174,14 @@
 
 
 
+- (IBAction)filterScreen:(id)sender {
+    
+    //UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"FilterScreen"];
+    
+    
+    [self presentViewController:vc animated:YES completion:nil];
+    
+}
+
 @end

@@ -34,5 +34,6 @@
 
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tap;
 
+- (IBAction)filterScreen:(id)sender;
 
 @end
