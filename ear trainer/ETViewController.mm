@@ -172,16 +172,46 @@
 }
 
 
+#pragma mark - ETFilterStateHandler delegate methods
 
+- (void)activeFilterStateChanged:(UISwitch *)sender;
+{
+    
+    [etManager filterStateForFilter:sender.tag withState:sender.on];
+}
 
+-(void)done
+{
+    [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+}
 
+-(void)setSwitchStates
+{
+    NSMutableArray *filters = etManager.filterStateHandler.activeFilters;
+    
+    for (int i = 0; i < [filters count]; i++) {
+        UISwitch *uiswitch = (UISwitch *)[self.presentedViewController.view viewWithTag:[[filters objectAtIndex:i] integerValue]];
+        
+        NSLog(@" %i", [[filters objectAtIndex:i] integerValue]);
+        [uiswitch setOn:YES animated:NO];
+    }
+    
+    [filters enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSLog(@"this is inside the array%@", obj);
+    }];
+    
+    
+}
 
 
 #pragma mark - Filter screen
 - (IBAction)filterScreen:(id)sender {
     
     //UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"FilterScreen"];
+    ETFilterScreenViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"FilterScreen"];
+    
+    [vc setDelegate:self];
+    
     
     
     [self presentViewController:vc animated:YES completion:nil];

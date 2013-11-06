@@ -36,6 +36,8 @@
 @property (strong, nonatomic) AudioFileReader *fileReader;
 @property ETWaveformImageView *waveformView;
 @property (weak) id <ETManagerDelegate> delegate;
+@property (strong, nonatomic) ETFilterStateHandler *filterStateHandler;
+
 
 +(ETManager *)sharedInstance;
 

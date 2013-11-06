@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "ETManager.h"
+#import "ETFilterScreenViewController.h"
 
 
-@interface ETViewController : UIViewController <MPMediaPickerControllerDelegate, UITextFieldDelegate, ETManagerDelegate>
+@interface ETViewController : UIViewController <MPMediaPickerControllerDelegate, UITextFieldDelegate, ETManagerDelegate, ETFilterScreenViewControllerDelegate>
 {
     ETManager *etManager;
 }

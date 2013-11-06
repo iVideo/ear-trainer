@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol ETFilterScreenDelegate <NSObject>
+@protocol ETFilterScreenViewControllerDelegate <NSObject>
+
+@required
+-(void)done;
+-(void)activeFilterStateChanged:(UISwitch *)sender;
+-(void)setSwitchStates;
+
 @optional
 
 
@@ -16,6 +22,8 @@
 
 @interface ETFilterScreenViewController : UIViewController
 
-- (IBAction)activeFilterStateChanged:(UISwitch *)sender;
+
+@property (weak) id <ETFilterScreenViewControllerDelegate> delegate;
+- (IBAction)done:(id)sender;
 
 @end

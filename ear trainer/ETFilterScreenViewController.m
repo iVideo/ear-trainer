@@ -27,6 +27,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    [self setupDisplay];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,5 +39,17 @@
 }
 
 - (IBAction)activeFilterStateChanged:(UISwitch *)sender {
+    
+    [self.delegate activeFilterStateChanged:sender];
+}
+- (IBAction)done:(id)sender {
+    
+    [self.delegate done];
+}
+
+-(void)setupDisplay
+{
+    [self.delegate setSwitchStates];
+    
 }
 @end

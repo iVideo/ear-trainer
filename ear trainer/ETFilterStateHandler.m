@@ -9,9 +9,6 @@
 #import "ETFilterStateHandler.h"
 
 @interface ETFilterStateHandler()
-{
-    NSMutableArray *activeFilters;
-}
 
 @end
 @implementation ETFilterStateHandler
@@ -22,7 +19,7 @@
     self = [super init];
     
     if (self) {
-        activeFilters = [[NSMutableArray alloc] init];
+        self.activeFilters = [[NSMutableArray alloc] init];
     }
    
     return self;
@@ -35,32 +32,32 @@
     NSLog(@" state changed of filter %@", filterNo);
     
     if (state) {
-        [activeFilters addObject:filterNo];
+        [self.activeFilters addObject:filterNo];
     }
     
     else if (!state)
     {
         NSLog(@"hellohello");
-        [activeFilters removeObject:filterNo];
+        [self.activeFilters removeObject:filterNo];
         
         
     }
     
-    [activeFilters enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        NSLog(@"this is inside the array%@", obj);
-    }];
+    self.activeFilters = [[self.activeFilters sortedArrayUsingSelector:@selector(compare:)] mutableCopy];
+    
+    
 }
 
 -(int)selectRandomFilter
 {
-    if (!([activeFilters count] == 0)) {
+    if (!([self.activeFilters count] == 0)) {
         
-        int selectedIndex = arc4random_uniform([activeFilters count]);
+        int selectedIndex = arc4random_uniform([self.activeFilters count]);
         
         NSLog(@"%i", selectedIndex);
         
         
-        NSNumber *obtainedValue = [activeFilters objectAtIndex:selectedIndex];
+        NSNumber *obtainedValue = [self.activeFilters objectAtIndex:selectedIndex];
         
         int returnIndex = [obtainedValue integerValue];
         

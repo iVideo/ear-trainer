@@ -14,17 +14,18 @@
     BOOL filterOn;
     
     // define center frequencies of the bands
-    float centerFrequencies[29];
+    float centerFrequencies[39];
     float QFactor;
     float initialGain;
     float userGain;
     int currentFilter;
     
-    ETFilterStateHandler *filterStateHandler;
     NVPeakingEQFilter *PEQ[29];
     
     
 }
+
+
 
 @end
 
@@ -44,44 +45,49 @@
     initialGain = 0.0f;
     filterOn = 0;
     
-    centerFrequencies[0] = 31.0f;
-    centerFrequencies[1] = 40.0f;
-    centerFrequencies[2] = 50.0f;
-    centerFrequencies[3] = 63.0f;
-    centerFrequencies[4] = 80.0f;
-    centerFrequencies[5] = 100.0f;
-    centerFrequencies[6] = 125.0f;
-    centerFrequencies[7] = 160.0f;
-    centerFrequencies[8] = 200.0f;
-    centerFrequencies[9] = 250.0f;
-    centerFrequencies[10] = 315.0f;
-    centerFrequencies[11] = 400.0f;
-    centerFrequencies[12] = 500.0f;
-    centerFrequencies[13] = 630.0f;
-    centerFrequencies[14] = 800.0f;
-    centerFrequencies[15] = 1000.0f;
-    centerFrequencies[16] = 1250.0f;
-    centerFrequencies[17] = 1600.0f;
-    centerFrequencies[18] = 2000.0f;
-    centerFrequencies[19] = 2500.0f;
-    centerFrequencies[20] = 3150.0f;
-    centerFrequencies[21] = 4000.0f;
-    centerFrequencies[22] = 5000.0f;
-    centerFrequencies[23] = 6300.0f;
-    centerFrequencies[24] = 8000.0f;
-    centerFrequencies[25] = 10000.0f;
-    centerFrequencies[26] = 12500.0f;
-    centerFrequencies[27] = 16000.0f;
-    centerFrequencies[28] = 20000.0f;
+    centerFrequencies[10] = 31.0f;
+    centerFrequencies[11] = 40.0f;
+    centerFrequencies[12] = 50.0f;
+    centerFrequencies[13] = 63.0f;
+    centerFrequencies[14] = 80.0f;
+    centerFrequencies[15] = 100.0f;
+    centerFrequencies[16] = 125.0f;
+    centerFrequencies[17] = 160.0f;
+    centerFrequencies[18] = 200.0f;
+    centerFrequencies[19] = 250.0f;
+    centerFrequencies[20] = 315.0f;
+    centerFrequencies[21] = 400.0f;
+    centerFrequencies[22] = 500.0f;
+    centerFrequencies[23] = 630.0f;
+    centerFrequencies[24] = 800.0f;
+    centerFrequencies[25] = 1000.0f;
+    centerFrequencies[26] = 1250.0f;
+    centerFrequencies[27] = 1600.0f;
+    centerFrequencies[28] = 2000.0f;
+    centerFrequencies[29] = 2500.0f;
+    centerFrequencies[30] = 3150.0f;
+    centerFrequencies[31] = 4000.0f;
+    centerFrequencies[32] = 5000.0f;
+    centerFrequencies[33] = 6300.0f;
+    centerFrequencies[34] = 8000.0f;
+    centerFrequencies[35] = 10000.0f;
+    centerFrequencies[36] = 12500.0f;
+    centerFrequencies[37] = 16000.0f;
+    centerFrequencies[38] = 20000.0f;
     
-    for (int i = 0; i < 23; i++) {
+    for (int i = 0; i < 29; i++) {
         PEQ[i] = [[NVPeakingEQFilter alloc] initWithSamplingRate:audioManager.samplingRate];
         PEQ[i].Q = QFactor;
-        PEQ[i].centerFrequency = centerFrequencies[i];
+        PEQ[i].centerFrequency = centerFrequencies[i + 10];
         PEQ[i].G = initialGain;
     }
     
-    filterStateHandler = [[ETFilterStateHandler alloc] init];
+    self.filterStateHandler = [[ETFilterStateHandler alloc] init];
+    
+    for(int i = 10; i < 38; i += 3)
+    {
+        [self.filterStateHandler updateFilter:i withState:YES];
+    }
 }
 
 -(Novocaine *)getAudioManager
@@ -178,13 +184,13 @@
 
 -(void)filterStateForFilter:(int)filterNumber withState:(BOOL)state;
 {
-    [filterStateHandler updateFilter:filterNumber withState:state];
+    [self.filterStateHandler updateFilter:filterNumber withState:state];
 }
 
 -(int)selectRandomFilter
 {
     
-  currentFilter = [filterStateHandler selectRandomFilter];
+  currentFilter = [self.filterStateHandler selectRandomFilter];
     
     return currentFilter;
 

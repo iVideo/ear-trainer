@@ -12,4 +12,7 @@
 
 -(void)updateFilter:(int)filterNumber withState:(BOOL)state;
 -(int)selectRandomFilter;
+
+
+@property (strong, nonatomic) NSMutableArray *activeFilters;
 @end
