@@ -13,7 +13,9 @@
 
 
 @end
+
 @interface ETFilterScreenViewController : UIViewController
 
+- (IBAction)activeFilterStateChanged:(UISwitch *)sender;
 
 @end

@@ -155,6 +155,7 @@
    // [self textFieldDidEndEditing:self.gainTextField];
 }
 
+#pragma mark - ETManager delegate
 -(void)setInAndOutImageView:(BOOL)filterOn
 {
     
@@ -174,6 +175,9 @@
 
 
 
+
+
+#pragma mark - Filter screen
 - (IBAction)filterScreen:(id)sender {
     
     //UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];

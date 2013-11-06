@@ -47,7 +47,7 @@
     centerFrequencies[0] = 31.0f;
     centerFrequencies[1] = 40.0f;
     centerFrequencies[2] = 50.0f;
-    centerFrequencies[3] = 60.0f;
+    centerFrequencies[3] = 63.0f;
     centerFrequencies[4] = 80.0f;
     centerFrequencies[5] = 100.0f;
     centerFrequencies[6] = 125.0f;
