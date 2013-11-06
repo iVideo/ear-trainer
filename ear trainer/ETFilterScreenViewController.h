@@ -14,6 +14,8 @@
 -(void)done;
 -(void)activeFilterStateChanged:(UISwitch *)sender;
 -(void)setSwitchStates;
+-(void)setOctaves;
+-(void)setOneThirdOctaves;
 
 @optional
 
@@ -25,5 +27,7 @@
 
 @property (weak) id <ETFilterScreenViewControllerDelegate> delegate;
 - (IBAction)done:(id)sender;
+- (IBAction)octavesButton:(id)sender;
+- (IBAction)oneThirdOctavesButton:(id)sender;
 
 @end

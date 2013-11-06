@@ -25,13 +25,14 @@
         [etManager setUpAudio];
         [etManager createFilters];
         [etManager setDelegate:self];
-        [self setInAndOutImageView:NO];
+        [self setInAndOutImageView:NO];         // Set the filter in/out image to 'OUT'
         
-       self.tap.enabled = NO;
+       self.tap.enabled = NO;                   // Tap recognizer for when keyboard is up (default = disabled)
         [self.gainTextField setDelegate:self];
-        negative = NO;
+        negative = NO;                          // Cut or boost, set to boost initially
     }
     
+    // Set slider thumb image
     [self.playbackSlider setThumbImage:[UIImage imageNamed:@"sliderthumb.png"] forState:UIControlStateNormal];
     
     
@@ -73,7 +74,7 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    self.tap.enabled = YES;
+    self.tap.enabled = YES;             // Enable tap recognizer to be able to dismiss keyboard
     
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField
@@ -82,7 +83,7 @@
 
 
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-   float number = [[numberFormatter numberFromString:textField.text] floatValue];
+   float number = [[numberFormatter numberFromString:textField.text] floatValue];       // Convert textField text to float
     
     [etManager setGainValue:number negative:negative];
 }
@@ -189,20 +190,48 @@
 {
     NSMutableArray *filters = etManager.filterStateHandler.activeFilters;
     
+    for (int j = 10; j < 39; j++) {
+        UISwitch *uiswitch = (UISwitch *)[self.presentedViewController.view viewWithTag:j];
+        
+        //        NSLog(@" %i", [[filters objectAtIndex:i] integerValue]);
+        [uiswitch setOn:NO animated:NO];
+    }
+    
     for (int i = 0; i < [filters count]; i++) {
         UISwitch *uiswitch = (UISwitch *)[self.presentedViewController.view viewWithTag:[[filters objectAtIndex:i] integerValue]];
         
-        NSLog(@" %i", [[filters objectAtIndex:i] integerValue]);
+//        NSLog(@" %i", [[filters objectAtIndex:i] integerValue]);
         [uiswitch setOn:YES animated:NO];
     }
     
     [filters enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSLog(@"this is inside the array%@", obj);
     }];
-    
-    
 }
 
+-(void)setOctaves
+{
+    [etManager.filterStateHandler.activeFilters removeAllObjects];
+    
+    for(int i = 10; i < 38; i += 3)
+    {
+        [etManager.filterStateHandler updateFilter:i withState:YES];
+    }
+    
+    [self setSwitchStates];
+}
+
+-(void)setOneThirdOctaves
+{
+    [etManager.filterStateHandler.activeFilters removeAllObjects];
+    
+    for(int i = 10; i < 39; i += 1)
+    {
+        [etManager.filterStateHandler updateFilter:i withState:YES];
+    }
+    
+    [self setSwitchStates];
+}
 
 #pragma mark - Filter screen
 - (IBAction)filterScreen:(id)sender {

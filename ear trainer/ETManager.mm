@@ -84,7 +84,7 @@
     
     self.filterStateHandler = [[ETFilterStateHandler alloc] init];
     
-    for(int i = 10; i < 38; i += 3)
+    for(int i = 10; i < 39; i += 3)
     {
         [self.filterStateHandler updateFilter:i withState:YES];
     }

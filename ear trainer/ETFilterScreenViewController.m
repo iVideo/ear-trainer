@@ -47,6 +47,18 @@
     [self.delegate done];
 }
 
+- (IBAction)octavesButton:(id)sender {
+    
+    [self.delegate setOctaves];
+}
+
+- (IBAction)oneThirdOctavesButton:(id)sender {
+    
+    [self.delegate setOneThirdOctaves];
+}
+
+
+
 -(void)setupDisplay
 {
     [self.delegate setSwitchStates];
