@@ -11,6 +11,7 @@
 @interface ETViewController ()
 {
     BOOL negative;
+    NSTimer *_timer;
 }
 @end
 
@@ -53,6 +54,53 @@
 }
 
 
+-(void)setupNowPlayingWithDuration:(int)duration
+{
+    
+    float currentTime = etManager.fileReader.currentTime;
+    if (currentTime < 0) {
+        currentTime = 0.0;
+    }
+    
+    int intCurrentTime = roundf(currentTime);
+    
+    int remainingTime = duration - currentTime;
+    
+    //self.elapsedTime.text = [NSString stringWithFormat:@"%i:%02i", 0, 0];
+    int rMinutes = remainingTime / 60;
+    int rSeconds = remainingTime % 60;
+    int cMinutes = intCurrentTime / 60;
+    int cSeconds = intCurrentTime % 60;
+    
+    self.elapsedTime.text = [NSString stringWithFormat:@"%01d:%02d", cMinutes, cSeconds];
+    self.remainingTime.text = [NSString stringWithFormat:@"- %01d:%02d", rMinutes, rSeconds];
+    self.nowPlayingSlider.maximumValue = duration;
+    self.nowPlayingSlider.value = 0.0;
+    
+    
+}
+
+-(void)updateNowPlaying
+{
+    float duration = etManager.fileReader.duration;
+    float currentTime = etManager.fileReader.currentTime;
+    
+    int intCurrentTime = floorf(currentTime);
+    int remainingTime = duration - currentTime;
+    
+    int rMinutes = remainingTime / 60;
+    int rSeconds = remainingTime % 60;
+    int cMinutes = intCurrentTime / 60;
+    int cSeconds = intCurrentTime % 60;
+    
+    self.elapsedTime.text = [NSString stringWithFormat:@"%01d:%02d", cMinutes, cSeconds];
+    self.remainingTime.text = [NSString stringWithFormat:@"- %01d:%02d", rMinutes, rSeconds];
+    self.nowPlayingSlider.value = intCurrentTime;
+    
+}
+
+
+
 #pragma mark - Audio stuff
 - (IBAction)pauseAudio:(id)sender {
     
@@ -69,6 +117,8 @@
 {
    return [etManager getWaveform];
 }
+
+
 
 #pragma mark - TextField stuff
 
@@ -93,9 +143,19 @@
 -(void)mediaPicker:(MPMediaPickerController *)mediaPicker didPickMediaItems:(MPMediaItemCollection *)mediaItemCollection
 {
     NSURL *url = [[[mediaItemCollection items] objectAtIndex:0] valueForProperty:MPMediaItemPropertyAssetURL];
+    NSString *title = [[[mediaItemCollection items] objectAtIndex:0] valueForProperty:MPMediaItemPropertyTitle];
+    NSString *artist = [[[mediaItemCollection items] objectAtIndex:0] valueForProperty:MPMediaItemPropertyArtist];
+    
+    
+    self.songDetailsLabel.text = [NSString stringWithFormat:@"%@ - %@", artist, title];
 
     [etManager readAudioFileWithURL:url];
    // self.waveform = [etManager getWaveform];
+    int songDuration = [[[[mediaItemCollection items ]objectAtIndex:0]valueForProperty:MPMediaItemPropertyPlaybackDuration] integerValue];
+    
+    [self setupNowPlayingWithDuration:songDuration];
+    
+    [[[mediaItemCollection items ]objectAtIndex:0]valueForProperty:MPMediaItemPropertyPlaybackDuration];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -149,6 +209,12 @@
 
 }
 
+- (IBAction)nowPlayingSlider:(UISlider *)sender {
+    
+    [etManager.fileReader setCurrentTime:sender.value];
+
+}
+
 #pragma mark - Tap Gesture Recognizer
 - (IBAction)tap:(UITapGestureRecognizer *)sender {
     
@@ -171,6 +237,28 @@
     
     
 }
+
+
+
+-(void)startNowPlayingTimer
+{
+    NSLog(@"FANDOFNAIDF");
+    if (_timer == nil)
+    {
+        _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateNowPlaying) userInfo:nil repeats:YES];
+    }
+    
+}
+
+-(void)stopNowPlayingTimer
+{
+    if (_timer != nil)
+    {
+        [_timer invalidate];
+        _timer = nil;
+    }
+}
+
 
 
 #pragma mark - ETFilterStateHandler delegate methods

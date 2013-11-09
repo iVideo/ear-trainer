@@ -103,19 +103,20 @@
     }
     
     
-    _fileReader = [[AudioFileReader alloc] initWithAudioFileURL:url samplingRate:audioManager.samplingRate numChannels:audioManager.numOutputChannels];
+    self.fileReader = [[AudioFileReader alloc] initWithAudioFileURL:url samplingRate:audioManager.samplingRate numChannels:audioManager.numOutputChannels];
 
   //  self.waveformView = [[ETWaveformImageView alloc] initWithUrl:url];
     
     
-    _fileReader.currentTime = 0.0;
+    [self.fileReader setCurrentTime:0];
+    NSLog(@"%f", self.fileReader.currentTime);
+    NSLog(@" current time: %f, duration: %f", floorf(self.fileReader.currentTime), self.fileReader.duration);
     
     [audioManager setOutputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels)
      {
          [self.fileReader retrieveFreshAudio:data numFrames:numFrames numChannels:numChannels];
          
-         
-         //NSLog(@"Time: %f", fileReader.currentTime);
+          //NSLog(@"Time: %f", fileReader.currentTime);
          
          if (filterOn){
              [PEQ[currentFilter] filterData:data numFrames:numFrames numChannels:numChannels];
@@ -132,6 +133,8 @@
 {
     [self.fileReader pause];
     [audioManager pause];
+    
+   [self.delegate stopNowPlayingTimer];
 }
 
 -(void)playAudio;
@@ -139,12 +142,17 @@
     [_fileReader play];
 
     [audioManager play];
+    
+   [self.delegate startNowPlayingTimer];
 }
 
 -(UIImageView *)getWaveform
 {
     return self.waveformView;
 }
+
+#pragma mark - Timer stuff
+
 
 #pragma mark - Filter stuff
 -(void)setFreqFromSliderValue:(float)sliderValue withTag:(int)sliderTag
@@ -190,7 +198,7 @@
 -(int)selectRandomFilter
 {
     
-  currentFilter = [self.filterStateHandler selectRandomFilter];
+  currentFilter = [self.filterStateHandler selectRandomFilter] - 10;
     
     return currentFilter;
 

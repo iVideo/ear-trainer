@@ -32,6 +32,12 @@
 - (IBAction)activateFilter:(UIButton *)sender;
 - (IBAction)cut:(UIButton *)sender;
 - (IBAction)boost:(UIButton *)sender;
+- (IBAction)nowPlayingSlider:(UISlider *)sender;
+
+@property (strong, nonatomic) IBOutlet UILabel *elapsedTime;
+@property (strong, nonatomic) IBOutlet UILabel *remainingTime;
+@property (strong, nonatomic) IBOutlet UISlider *nowPlayingSlider;
+@property (strong, nonatomic) IBOutlet UILabel *songDetailsLabel;
 
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tap;
 

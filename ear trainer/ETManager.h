@@ -21,6 +21,9 @@
 @protocol ETManagerDelegate <NSObject>
 @optional
 -(void)setInAndOutImageView:(BOOL)filterOn;
+-(void)startNowPlayingTimer;
+-(void)stopNowPlayingTimer;
+
 
 
 
