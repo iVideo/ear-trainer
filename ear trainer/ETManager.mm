@@ -108,16 +108,14 @@
   //  self.waveformView = [[ETWaveformImageView alloc] initWithUrl:url];
     
     
-    [self.fileReader setCurrentTime:0];
+    [self.fileReader setCurrentTime:0.0f];
     NSLog(@"%f", self.fileReader.currentTime);
     NSLog(@" current time: %f, duration: %f", floorf(self.fileReader.currentTime), self.fileReader.duration);
     
     [audioManager setOutputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels)
      {
          [self.fileReader retrieveFreshAudio:data numFrames:numFrames numChannels:numChannels];
-         
-          //NSLog(@"Time: %f", fileReader.currentTime);
-         
+                  
          if (filterOn){
              [PEQ[currentFilter] filterData:data numFrames:numFrames numChannels:numChannels];
          }
@@ -202,6 +200,13 @@
     
     return currentFilter;
 
+}
+
+-(float)getFrequencyOfActiveFilters:(NSNumber *)filterNumber
+{
+    int filterNo = [filterNumber integerValue];
+    return PEQ[filterNo - 10].centerFrequency;
+    
 }
 
 #pragma mark - Singleton Instance

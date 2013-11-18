@@ -25,7 +25,11 @@
 @interface ETFilterScreenViewController : UIViewController
 
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak) id <ETFilterScreenViewControllerDelegate> delegate;
+
+
 - (IBAction)done:(id)sender;
 - (IBAction)octavesButton:(id)sender;
 - (IBAction)oneThirdOctavesButton:(id)sender;

@@ -47,6 +47,8 @@
 		C0E4614A180D72CF001AAF9B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0E46148180D72CF001AAF9B /* InfoPlist.strings */; };
 		C0E4614C180D72CF001AAF9B /* ear_trainerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E4614B180D72CF001AAF9B /* ear_trainerTests.m */; };
 		C0E46156180D7371001AAF9B /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E46155180D7370001AAF9B /* MediaPlayer.framework */; };
+		C0F97380183830D30015FBAB /* ETCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F9737F183830D30015FBAB /* ETCell.m */; };
+		C0F973831838374D0015FBAB /* ETHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F973821838374D0015FBAB /* ETHeaderView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +125,10 @@
 		C0E46149180D72CF001AAF9B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C0E4614B180D72CF001AAF9B /* ear_trainerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ear_trainerTests.m; sourceTree = "<group>"; };
 		C0E46155180D7370001AAF9B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		C0F9737E183830D30015FBAB /* ETCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ETCell.h; sourceTree = "<group>"; };
+		C0F9737F183830D30015FBAB /* ETCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ETCell.m; sourceTree = "<group>"; };
+		C0F973811838374D0015FBAB /* ETHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ETHeaderView.h; sourceTree = "<group>"; };
+		C0F973821838374D0015FBAB /* ETHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ETHeaderView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,6 +263,10 @@
 				C0E46136180D72CF001AAF9B /* ETViewController.mm */,
 				C08F60E7181DCC800023C893 /* ETFilterScreenViewController.h */,
 				C08F60E8181DCC800023C893 /* ETFilterScreenViewController.m */,
+				C0F9737E183830D30015FBAB /* ETCell.h */,
+				C0F9737F183830D30015FBAB /* ETCell.m */,
+				C0F973811838374D0015FBAB /* ETHeaderView.h */,
+				C0F973821838374D0015FBAB /* ETHeaderView.m */,
 				C0924C7B1816C50700A87334 /* API */,
 				C0924C7A1816C4FB00A87334 /* Model */,
 				C0E46138180D72CF001AAF9B /* Images.xcassets */,
@@ -412,10 +422,12 @@
 				C0E46137180D72CF001AAF9B /* ETViewController.mm in Sources */,
 				C0E4612D180D72CF001AAF9B /* main.m in Sources */,
 				C0DDE1D6180DA5C8005FF890 /* NVLowShelvingFilter.m in Sources */,
+				C0F973831838374D0015FBAB /* ETHeaderView.m in Sources */,
 				C0DDE1F2180DA8FF005FF890 /* AudioFileReader.mm in Sources */,
 				C0DDE1D7180DA5C8005FF890 /* NVNotchFilter.m in Sources */,
 				C0DDE1F4180DA8FF005FF890 /* Novocaine.m in Sources */,
 				C0DDE1D4180DA5C8005FF890 /* NVHighShelvingFilter.m in Sources */,
+				C0F97380183830D30015FBAB /* ETCell.m in Sources */,
 				C0924C791816C0CE00A87334 /* ETFilterStateHandler.m in Sources */,
 				C0DDE1D1180DA5C8005FF890 /* NVBandpassFilter.m in Sources */,
 				C0DDE1D2180DA5C8005FF890 /* NVBandpassQPeakGainFilter.m in Sources */,

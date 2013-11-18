@@ -13,6 +13,13 @@
     BOOL negative;
     NSTimer *_timer;
 }
+@property (weak, nonatomic) IBOutlet UIButton *cutOnOff;
+@property (weak, nonatomic) IBOutlet UIButton *boostOnOff;
+
+
+- (IBAction)turnCutOn:(UIButton *)sender;
+- (IBAction)turnBoostOn:(UIButton *)sender;
+
 @end
 
 @implementation ETViewController
@@ -21,6 +28,16 @@
 {
     [super viewWillAppear:animated];
     
+    
+    
+    // Set slider thumb image
+    [self.playbackSlider setThumbImage:[UIImage imageNamed:@"sliderthumb.png"] forState:UIControlStateNormal];
+    [self.playAndPauseButton setBackgroundImage:[UIImage imageNamed:@"playbuttonwhite"] forState:UIControlStateNormal];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
     if (!etManager) {
         etManager = [ETManager sharedInstance];
         [etManager setUpAudio];
@@ -28,22 +45,15 @@
         [etManager setDelegate:self];
         [self setInAndOutImageView:NO];         // Set the filter in/out image to 'OUT'
         
-       self.tap.enabled = NO;                   // Tap recognizer for when keyboard is up (default = disabled)
+        self.tap.enabled = NO;                   // Tap recognizer for when keyboard is up (default = disabled)
         [self.gainTextField setDelegate:self];
         negative = NO;                          // Cut or boost, set to boost initially
     }
     
-    // Set slider thumb image
-    [self.playbackSlider setThumbImage:[UIImage imageNamed:@"sliderthumb.png"] forState:UIControlStateNormal];
+//    UIBarButtonItem *musicLib = [[UIBarButtonItem alloc] init];
+//    musicLib.image = [UIImage imageNamed:@"note"];
     
     
-    
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -53,30 +63,33 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Now Playing methods
+-(NSString *)timeFormat:(float)value
+{
+    
+    int seconds = ceilf(value);
+    
+    NSLog(@"value is: %f", value);
+    int mins = floor(lroundf(value)/60);
+    int secs = seconds % 60;
+    
+    NSLog(@"current time is: %i", seconds);
+    
+//    int imins = roundf(mins);
+//    int isecs = floorf(secs);
+    
+    NSString *time = [[NSString alloc] initWithFormat:@"%d:%02d", mins, secs];
+    
+    return time;
+}
 
 -(void)setupNowPlayingWithDuration:(int)duration
 {
     
-    float currentTime = etManager.fileReader.currentTime;
-    if (currentTime < 0) {
-        currentTime = 0.0;
-    }
-    
-    int intCurrentTime = roundf(currentTime);
-    
-    int remainingTime = duration - currentTime;
-    
-    //self.elapsedTime.text = [NSString stringWithFormat:@"%i:%02i", 0, 0];
-    int rMinutes = remainingTime / 60;
-    int rSeconds = remainingTime % 60;
-    int cMinutes = intCurrentTime / 60;
-    int cSeconds = intCurrentTime % 60;
-    
-    self.elapsedTime.text = [NSString stringWithFormat:@"%01d:%02d", cMinutes, cSeconds];
-    self.remainingTime.text = [NSString stringWithFormat:@"- %01d:%02d", rMinutes, rSeconds];
+    self.elapsedTime.text = @"0:00";
+    self.remainingTime.text = [NSString stringWithFormat:@"- %@", [self timeFormat:etManager.fileReader.duration]];
     self.nowPlayingSlider.maximumValue = duration;
-    self.nowPlayingSlider.value = 0.0;
-    
+    self.nowPlayingSlider.value = 0.0f;
     
 }
 
@@ -85,30 +98,36 @@
     float duration = etManager.fileReader.duration;
     float currentTime = etManager.fileReader.currentTime;
     
-    int intCurrentTime = floorf(currentTime);
-    int remainingTime = duration - currentTime;
-    
-    int rMinutes = remainingTime / 60;
-    int rSeconds = remainingTime % 60;
-    int cMinutes = intCurrentTime / 60;
-    int cSeconds = intCurrentTime % 60;
-    
-    self.elapsedTime.text = [NSString stringWithFormat:@"%01d:%02d", cMinutes, cSeconds];
-    self.remainingTime.text = [NSString stringWithFormat:@"- %01d:%02d", rMinutes, rSeconds];
-    self.nowPlayingSlider.value = intCurrentTime;
+    self.elapsedTime.text = [NSString stringWithFormat:@"%@", [self timeFormat:currentTime]];
+    self.remainingTime.text = [NSString stringWithFormat:@"-%@", [self timeFormat:(duration - currentTime)]];
+   // NSLog(@"current time is: %@", [self timeFormat:currentTime]);
+
+    self.nowPlayingSlider.value = currentTime;
     
 }
 
 
 
 #pragma mark - Audio stuff
-- (IBAction)pauseAudio:(id)sender {
-    
-    [etManager pauseAudio];
-}
 
 - (IBAction)Play:(id)sender {
-    [etManager playAudio];
+    
+    if (etManager.fileReader.audioFileURL != 0)
+    {
+        if(![etManager getAudioManager].playing)
+        {
+            [etManager playAudio];
+            [self.playAndPauseButton setBackgroundImage:[UIImage imageNamed:@"pausebuttonwhite"] forState:UIControlStateNormal];
+        }
+        else if ([etManager getAudioManager].playing)
+        {
+        
+            [etManager pauseAudio];
+            [self.playAndPauseButton setBackgroundImage:[UIImage imageNamed:@"playbuttonwhite"] forState:UIControlStateNormal];
+
+        }
+        
+    }
 }
 
 
@@ -157,6 +176,8 @@
     
     [[[mediaItemCollection items ]objectAtIndex:0]valueForProperty:MPMediaItemPropertyPlaybackDuration];
     
+    NSLog(@" %@", etManager.fileReader.audioFileURL);
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -175,17 +196,6 @@
 
 #pragma mark - Filter stuff
 
-- (IBAction)freq:(UISlider *)sender{
-    
-    [etManager setFreqFromSliderValue:sender.value withTag:sender.tag];
-}
-
-
-- (IBAction)filterState:(UISwitch *)sender {
-    
-    [etManager filterStateForFilter:sender.tag withState:sender.on];
-}
-
 - (IBAction)activateFilter:(UIButton *)sender {
     
     if(etManager.fileReader.playing){
@@ -196,19 +206,28 @@
     }
 }
 
-- (IBAction)cut:(UIButton *)sender {
+- (IBAction)turnCutOn:(UIButton *)sender {
     
-    negative = YES;
-    [self textFieldDidEndEditing:self.gainTextField];
+    if(negative != YES)
+    {
+        negative = YES;
+        [self textFieldDidEndEditing:self.gainTextField];
+       
+        [self.cutOnOff setBackgroundImage:[UIImage imageNamed:@"onswitch"] forState:UIControlStateNormal];
+        [self.boostOnOff setBackgroundImage:[UIImage imageNamed:@"offswitch"] forState:UIControlStateNormal];
+    }
 }
 
-- (IBAction)boost:(UIButton *)sender {
+- (IBAction)turnBoostOn:(UIButton *)sender {
     
-    negative = NO;
-    [self textFieldDidEndEditing:self.gainTextField];
-
+    if(negative != NO)
+    {
+        negative = NO;
+        [self textFieldDidEndEditing:self.gainTextField];
+        [self.cutOnOff setBackgroundImage:[UIImage imageNamed:@"offswitch"] forState:UIControlStateNormal];
+        [self.boostOnOff setBackgroundImage:[UIImage imageNamed:@"onswitch"] forState:UIControlStateNormal];
+    }
 }
-
 - (IBAction)nowPlayingSlider:(UISlider *)sender {
     
     [etManager.fileReader setCurrentTime:sender.value];
@@ -245,7 +264,7 @@
     NSLog(@"FANDOFNAIDF");
     if (_timer == nil)
     {
-        _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateNowPlaying) userInfo:nil repeats:YES];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:1.01f target:self selector:@selector(updateNowPlaying) userInfo:nil repeats:YES];
     }
     
 }
@@ -272,6 +291,7 @@
 -(void)done
 {
     [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+    [self.collectionView reloadData];
 }
 
 -(void)setSwitchStates
@@ -283,6 +303,7 @@
         
         //        NSLog(@" %i", [[filters objectAtIndex:i] integerValue]);
         [uiswitch setOn:NO animated:NO];
+        [uiswitch setOffImage:[UIImage imageNamed:@"onswitch"]];
     }
     
     for (int i = 0; i < [filters count]; i++) {
@@ -290,6 +311,7 @@
         
 //        NSLog(@" %i", [[filters objectAtIndex:i] integerValue]);
         [uiswitch setOn:YES animated:NO];
+        
     }
     
     [filters enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -334,5 +356,58 @@
     [self presentViewController:vc animated:YES completion:nil];
     
 }
+
+#pragma mark - CollectionView
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return [etManager.filterStateHandler.activeFilters count];
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    static NSString *CellIdentifier = @"1st";
+    
+    ETCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    if (etManager) {
+        NSNumber *number = [etManager.filterStateHandler.activeFilters objectAtIndex:indexPath.row];
+        float freqVal = [etManager getFrequencyOfActiveFilters:number];
+        NSString *freq = nil;
+        
+        
+        if (freqVal >= 1000) {
+            freqVal = freqVal / 1000;
+        
+            if(floor(freqVal) == freqVal)                                   // if freqVal is an integer after dividing, have it display no decimal places, else display with 3 S.F.s
+                freq = [NSString stringWithFormat:@"%.0f kHz", freqVal];
+                else
+                freq = [NSString stringWithFormat:@"%.3g kHz", freqVal];
+        }
+        else
+        freq = [NSString stringWithFormat:@"%.0f Hz", freqVal];     // If the value is smaller than 1000, just display with no decimal places.
+        
+
+        cell.freqLabel.text = freq;
+        //cell.cellBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"collectionview"]];
+    }
+    return cell;
+    
+    
+}
+
+-(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    
+    static NSString *headerViewIdentifier = @"collectionViewTitle";
+    
+    ETHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerViewIdentifier forIndexPath:indexPath];
+    
+    return headerView;
+    
+    
+    
+}
+
 
 @end

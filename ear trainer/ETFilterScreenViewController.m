@@ -23,12 +23,18 @@
     return self;
 }
 
+-(void)viewWillLayoutSubviews
+{
+    
+    self.scrollView.contentSize = self.contentView.bounds.size;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
     [self setupDisplay];
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
 
 }
 
