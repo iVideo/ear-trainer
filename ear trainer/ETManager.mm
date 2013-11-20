@@ -195,11 +195,16 @@
 
 -(int)selectRandomFilter
 {
-    
+    // Sets current filter to randomly selected filter. 10 is minused so that the value derived from within 'activeFilters' corresponds to the correct filter inside PEQ[]
   currentFilter = [self.filterStateHandler selectRandomFilter] - 10;
     
     return currentFilter;
 
+}
+-(int)getCurrentFilter
+{
+    
+    return currentFilter;
 }
 
 -(float)getFrequencyOfActiveFilters:(NSNumber *)filterNumber

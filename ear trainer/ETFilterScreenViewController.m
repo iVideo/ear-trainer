@@ -23,18 +23,14 @@
     return self;
 }
 
--(void)viewWillLayoutSubviews
-{
-    
-    self.scrollView.contentSize = self.contentView.bounds.size;
-}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     [self setupDisplay];
     
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
+    self.scrollView.contentSize = CGSizeMake(320, 1000);
+    self.scrollView.frame = CGRectMake(0, 0, 320, 300);
 
 }
 
@@ -61,9 +57,18 @@
 - (IBAction)oneThirdOctavesButton:(id)sender {
     
     [self.delegate setOneThirdOctaves];
+    
 }
 
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [self.delegate textFieldDidBeginEditing:textField];
+}
 
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    
+    [self.delegate textFieldDidEndEditing:textField];
+}
 
 -(void)setupDisplay
 {

@@ -15,10 +15,12 @@
 }
 @property (weak, nonatomic) IBOutlet UIButton *cutOnOff;
 @property (weak, nonatomic) IBOutlet UIButton *boostOnOff;
+@property (weak, nonatomic) IBOutlet UIImageView *boostFilter;
 
 
 - (IBAction)turnCutOn:(UIButton *)sender;
 - (IBAction)turnBoostOn:(UIButton *)sender;
+- (IBAction)displayFilterNumber:(id)sender;
 
 @end
 
@@ -33,6 +35,7 @@
     // Set slider thumb image
     [self.playbackSlider setThumbImage:[UIImage imageNamed:@"sliderthumb.png"] forState:UIControlStateNormal];
     [self.playAndPauseButton setBackgroundImage:[UIImage imageNamed:@"playbuttonwhite"] forState:UIControlStateNormal];
+    self.boostFilter.image = [UIImage imageNamed:@"boostfilter"];
 }
 
 - (void)viewDidLoad
@@ -69,11 +72,11 @@
     
     int seconds = ceilf(value);
     
-    NSLog(@"value is: %f", value);
+    //NSLog(@"value is: %f", value);
     int mins = floor(lroundf(value)/60);
     int secs = seconds % 60;
     
-    NSLog(@"current time is: %i", seconds);
+    //NSLog(@"current time is: %i", seconds);
     
 //    int imins = roundf(mins);
 //    int isecs = floorf(secs);
@@ -199,7 +202,7 @@
 - (IBAction)activateFilter:(UIButton *)sender {
     
     if(etManager.fileReader.playing){
-        self.filterNumber.text = [NSString stringWithFormat:@"%i", [etManager selectRandomFilter]];
+        self.filterNumber.text = [NSString stringWithFormat:@"%i", [etManager selectRandomFilter] + 10];
         
         [NSTimer scheduledTimerWithTimeInterval:1.0 target:etManager selector:@selector(turnFilterOn) userInfo:nil repeats:NO];
 
@@ -227,6 +230,11 @@
         [self.cutOnOff setBackgroundImage:[UIImage imageNamed:@"offswitch"] forState:UIControlStateNormal];
         [self.boostOnOff setBackgroundImage:[UIImage imageNamed:@"onswitch"] forState:UIControlStateNormal];
     }
+}
+
+- (IBAction)displayFilterNumber:(id)sender {
+    
+    self.filterNumber.text = [NSString stringWithFormat:@"%i", [etManager getCurrentFilter]];
 }
 - (IBAction)nowPlayingSlider:(UISlider *)sender {
     
@@ -393,6 +401,42 @@
     }
     return cell;
     
+    
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    
+    if ([etManager getAudioManager].playing)
+    {
+        
+        NSNumber *temp = [etManager.filterStateHandler.activeFilters objectAtIndex:indexPath.row];
+        
+        NSLog(@" %@", temp);
+        
+        if ([temp integerValue] == [etManager getCurrentFilter] + 10)
+        {
+        
+            NSLog(@"you got it right!!#!#$!#$@#$");
+            ETCell *cell = (ETCell *)[collectionView cellForItemAtIndexPath:indexPath];
+            [cell.cellBackground setImage:[UIImage imageNamed:@"plaincollectionviewright"]];
+        }
+        else if ([temp integerValue] != [etManager getCurrentFilter] + 10)
+        {
+            NSLog(@"WRONG!");
+            ETCell *cell = (ETCell *)[collectionView cellForItemAtIndexPath:indexPath];
+            [cell.cellBackground setImage:[UIImage imageNamed:@"plaincollectionviewwrong"]];
+        
+        }
+        
+    }
+}
+-(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    ETCell *cell = (ETCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    [cell.cellBackground setImage:[UIImage imageNamed:@"plaincollectionview"]];
     
 }
 

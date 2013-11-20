@@ -57,5 +57,6 @@
 -(int)selectRandomFilter;
 -(void)turnFilterOn;
 -(float)getFrequencyOfActiveFilters:(NSNumber *)filterNumber;
+-(int)getCurrentFilter;
 
 @end
