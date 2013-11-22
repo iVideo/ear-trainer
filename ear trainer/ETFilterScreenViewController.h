@@ -16,8 +16,9 @@
 -(void)setSwitchStates;
 -(void)setOctaves;
 -(void)setOneThirdOctaves;
--(void)textFieldDidBeginEditing:(UITextField *)textField;
--(void)textFieldDidEndEditing:(UITextField *)textField;
+-(void)updateGainValue:(float)number;
+-(BOOL)getNegative;
+-(void)setNegative:(BOOL)booleanValue;
 
 @optional
 
@@ -30,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak) id <ETFilterScreenViewControllerDelegate> delegate;
+@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tap;
 
 @property (weak, nonatomic) IBOutlet UITextField *gainTextField;
 
@@ -37,5 +39,8 @@
 - (IBAction)done:(id)sender;
 - (IBAction)octavesButton:(id)sender;
 - (IBAction)oneThirdOctavesButton:(id)sender;
+- (IBAction)tap:(UITapGestureRecognizer *)sender;
+- (IBAction)turnBoostOn:(UIButton *)sender;
+- (IBAction)turnCutOn:(UIButton *)sender;
 
 @end

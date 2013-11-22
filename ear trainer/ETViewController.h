@@ -27,7 +27,6 @@
 
 - (IBAction)showMediaPicker:(id)sender;
 - (IBAction)Play:(id)sender;
-- (IBAction)tap:(UITapGestureRecognizer *)sender;
 - (IBAction)activateFilter:(UIButton *)sender;
 - (IBAction)nowPlayingSlider:(UISlider *)sender;
 
@@ -36,7 +35,7 @@
 @property (weak, nonatomic) IBOutlet UISlider *nowPlayingSlider;
 @property (weak, nonatomic) IBOutlet UILabel *songDetailsLabel;
 
-@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tap;
+
 @property (weak, nonatomic) IBOutlet UIButton *playAndPauseButton;
 
 - (IBAction)filterScreen:(id)sender;

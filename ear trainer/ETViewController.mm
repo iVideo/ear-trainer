@@ -16,11 +16,13 @@
 @property (weak, nonatomic) IBOutlet UIButton *cutOnOff;
 @property (weak, nonatomic) IBOutlet UIButton *boostOnOff;
 @property (weak, nonatomic) IBOutlet UIImageView *boostFilter;
+@property (weak, nonatomic) IBOutlet UIView *nowPlayingView;
 
 
 - (IBAction)turnCutOn:(UIButton *)sender;
 - (IBAction)turnBoostOn:(UIButton *)sender;
 - (IBAction)displayFilterNumber:(id)sender;
+- (IBAction)showNowPlaying:(id)sender;
 
 @end
 
@@ -36,6 +38,7 @@
     [self.playbackSlider setThumbImage:[UIImage imageNamed:@"sliderthumb.png"] forState:UIControlStateNormal];
     [self.playAndPauseButton setBackgroundImage:[UIImage imageNamed:@"playbuttonwhite"] forState:UIControlStateNormal];
     self.boostFilter.image = [UIImage imageNamed:@"boostfilter"];
+    [self.nowPlayingView setHidden:YES];
 }
 
 - (void)viewDidLoad
@@ -48,7 +51,6 @@
         [etManager setDelegate:self];
         [self setInAndOutImageView:NO];         // Set the filter in/out image to 'OUT'
         
-        self.tap.enabled = NO;                   // Tap recognizer for when keyboard is up (default = disabled)
         [self.gainTextField setDelegate:self];
         negative = NO;                          // Cut or boost, set to boost initially
     }
@@ -140,23 +142,8 @@
    return [etManager getWaveform];
 }
 
-
-
-#pragma mark - TextField stuff
-
--(void)textFieldDidBeginEditing:(UITextField *)textField
+-(void)updateGainValue:(float)number
 {
-    self.tap.enabled = YES;             // Enable tap recognizer to be able to dismiss keyboard
-    
-}
--(void)textFieldDidEndEditing:(UITextField *)textField
-{
-    self.tap.enabled = NO;
-
-
-    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-   float number = [[numberFormatter numberFromString:textField.text] floatValue];       // Convert textField text to float
-    
     [etManager setGainValue:number negative:negative];
 }
 
@@ -236,17 +223,28 @@
     
     self.filterNumber.text = [NSString stringWithFormat:@"%i", [etManager getCurrentFilter]];
 }
+
+- (IBAction)showNowPlaying:(id)sender {
+    
+    if (!self.nowPlayingView.hidden)
+        [self.nowPlayingView setHidden:YES];
+    else if (self.nowPlayingView.hidden)
+    [self.nowPlayingView setHidden:NO];
+}
 - (IBAction)nowPlayingSlider:(UISlider *)sender {
     
     [etManager.fileReader setCurrentTime:sender.value];
 
 }
 
-#pragma mark - Tap Gesture Recognizer
-- (IBAction)tap:(UITapGestureRecognizer *)sender {
+-(BOOL)getNegative
+{
+    return negative;
+}
+-(void)setNegative:(BOOL)booleanValue;
+{
+    negative = booleanValue;
     
-    [self.gainTextField resignFirstResponder];
-   // [self textFieldDidEndEditing:self.gainTextField];
 }
 
 #pragma mark - ETManager delegate

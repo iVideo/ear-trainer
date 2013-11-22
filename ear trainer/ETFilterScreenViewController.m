@@ -10,6 +10,10 @@
 
 @interface ETFilterScreenViewController ()
 
+@property (weak, nonatomic) IBOutlet UIButton *boostOnOff;
+@property (weak, nonatomic) IBOutlet UIButton *cutOnOff;
+
+@property (strong, nonatomic) UIView *inputAccessoryView;
 @end
 
 @implementation ETFilterScreenViewController
@@ -30,7 +34,9 @@
     [self setupDisplay];
     
     self.scrollView.contentSize = CGSizeMake(320, 1000);
-    self.scrollView.frame = CGRectMake(0, 0, 320, 300);
+    //self.scrollView.frame = CGRectMake(0, 0, 320, 300);
+    self.tap.enabled = NO;                   // Tap recognizer for when keyboard is up (default = disabled)
+    [self.gainTextField setDelegate:self];
 
 }
 
@@ -59,16 +65,91 @@
     [self.delegate setOneThirdOctaves];
     
 }
+#pragma mark - Tap Gesture Recognizer
+
+- (IBAction)tap:(UITapGestureRecognizer *)sender {
+    [self dismissingKeyboard];
+}
+
+- (IBAction)turnBoostOn:(UIButton *)sender {
+    BOOL negative = [self.delegate getNegative];
+    
+    if(negative != NO)
+    {
+        [self.delegate setNegative:NO];
+        
+        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+        float number = [[numberFormatter numberFromString:self.gainTextField.text] floatValue];
+        [self.delegate updateGainValue:number];
+        
+        [self.cutOnOff setBackgroundImage:[UIImage imageNamed:@"offswitch"] forState:UIControlStateNormal];
+        [self.boostOnOff setBackgroundImage:[UIImage imageNamed:@"onswitch"] forState:UIControlStateNormal];
+    }
+}
+
+- (IBAction)turnCutOn:(UIButton *)sender {
+    
+    BOOL negative = [self.delegate getNegative];
+    if(negative != YES)
+    {
+        [self.delegate setNegative:YES];
+        
+        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+        float number = [[numberFormatter numberFromString:self.gainTextField.text] floatValue];
+        [self.delegate updateGainValue:number];
+        
+        [self.cutOnOff setBackgroundImage:[UIImage imageNamed:@"onswitch"] forState:UIControlStateNormal];
+        [self.boostOnOff setBackgroundImage:[UIImage imageNamed:@"offswitch"] forState:UIControlStateNormal];
+    }
+}
+
+-(UIView *)inputAccessoryView
+
+{
+    if (!_inputAccessoryView) {
+        CGRect accessFrame = CGRectMake(0.0, 0.0, 320, 40);
+        _inputAccessoryView = [[UIView alloc] initWithFrame:accessFrame];
+        _inputAccessoryView.backgroundColor = [UIColor whiteColor];
+        
+        UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        doneButton.frame = CGRectMake(250, 10, 50, 20);
+        doneButton.titleLabel.font = [UIFont systemFontOfSize:17.0];
+        [doneButton setTitle:@"Done" forState:UIControlStateNormal];
+        [doneButton addTarget:self action:@selector(dismissingKeyboard) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_inputAccessoryView addSubview:doneButton];
+        
+    }
+    
+    return _inputAccessoryView;
+}
+#pragma mark - TextField stuff
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [self.delegate textFieldDidBeginEditing:textField];
+    self.tap.enabled = YES;             // Enable tap recognizer to be able to dismiss keyboard
+    self.gainTextField.inputAccessoryView = self.inputAccessoryView;
+    
 }
 
--(void)textFieldDidEndEditing:(UITextField *)textField{
+-(void)dismissingKeyboard
+{
+    self.tap.enabled = NO;
     
-    [self.delegate textFieldDidEndEditing:textField];
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    float number = [[numberFormatter numberFromString:self.gainTextField.text] floatValue];
+    if (number == 0) {
+        self.gainTextField.text = @"0,0";
+    }
+    [self.delegate updateGainValue:number];
+    [self.gainTextField resignFirstResponder];
 }
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [self dismissingKeyboard];
+    
+}
+
 
 -(void)setupDisplay
 {
