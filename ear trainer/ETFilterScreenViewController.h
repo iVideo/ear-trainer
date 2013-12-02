@@ -16,6 +16,7 @@
 -(void)setSwitchStates;
 -(void)setOctaves;
 -(void)setOneThirdOctaves;
+-(void)removeAllFilters;
 -(void)updateGainValue:(float)number;
 -(BOOL)getNegative;
 -(void)setNegative:(BOOL)booleanValue;
@@ -39,6 +40,7 @@
 - (IBAction)done:(id)sender;
 - (IBAction)octavesButton:(id)sender;
 - (IBAction)oneThirdOctavesButton:(id)sender;
+- (IBAction)clearFiltersButton:(id)sender;
 - (IBAction)tap:(UITapGestureRecognizer *)sender;
 - (IBAction)turnBoostOn:(UIButton *)sender;
 - (IBAction)turnCutOn:(UIButton *)sender;

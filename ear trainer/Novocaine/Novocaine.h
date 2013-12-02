@@ -143,6 +143,7 @@ typedef void (^NovocaineInputBlock)(float *data, UInt32 numFrames, UInt32 numCha
 // Audio Unit methods
 - (void)play;
 - (void)pause;
+-(void)freeBuffers;
 
 #if defined ( USING_IOS )
 - (void)checkSessionProperties;

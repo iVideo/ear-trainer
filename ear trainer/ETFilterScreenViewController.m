@@ -65,6 +65,10 @@
     [self.delegate setOneThirdOctaves];
     
 }
+
+- (IBAction)clearFiltersButton:(id)sender {
+    [self.delegate removeAllFilters];
+}
 #pragma mark - Tap Gesture Recognizer
 
 - (IBAction)tap:(UITapGestureRecognizer *)sender {

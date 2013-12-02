@@ -50,8 +50,6 @@
 
 -(int)selectRandomFilter
 {
-    if (!([self.activeFilters count] == 0)) {
-        
         int selectedIndex = arc4random_uniform([self.activeFilters count]);
         
         NSLog(@"%i", selectedIndex);
@@ -64,10 +62,6 @@
         NSLog(@"%i", returnIndex);
         
         return returnIndex;
-    }
-    else
-        return NULL;
-    
 }
 
 

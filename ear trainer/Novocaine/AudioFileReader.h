@@ -56,7 +56,6 @@
 - (void)play;
 - (void)pause;
 - (void)stop;
--(void)killInstance;
 
 
 @end

@@ -16,7 +16,7 @@
 		C0924C791816C0CE00A87334 /* ETFilterStateHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C0924C781816C0CE00A87334 /* ETFilterStateHandler.m */; };
 		C09A9A0F180DB00B001DD5A9 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09A9A0E180DB00B001DD5A9 /* Accelerate.framework */; };
 		C09A9A14180DB1C8001DD5A9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09A9A13180DB1C8001DD5A9 /* AudioToolbox.framework */; };
-		C09A9A17180DB302001DD5A9 /* RingBuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = C09A9A16180DB302001DD5A9 /* RingBuffer.mm */; };
+		C09A9A17180DB302001DD5A9 /* RingBuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = C09A9A16180DB302001DD5A9 /* RingBuffer.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C0CB23C618109DB00017994B /* ETWaveformImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CB23C518109DB00017994B /* ETWaveformImageView.m */; };
 		C0DDE1D0180DA5C8005FF890 /* NVAllpassFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DDE1BF180DA5C8005FF890 /* NVAllpassFilter.m */; };
 		C0DDE1D1180DA5C8005FF890 /* NVBandpassFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DDE1C1180DA5C8005FF890 /* NVBandpassFilter.m */; };

@@ -158,13 +158,13 @@
     // Read the audio
     UInt32 framesRead = self.numSamplesReadPerPacket;
     ExtAudioFileRead(self.inputFile, &framesRead, &incomingAudio);
-    
+
     // Update where we are in the file
     ExtAudioFileTell(self.inputFile, &frameOffset);
     self.currentFileTime = (float)frameOffset / self.samplingRate;
     
     // Add the new audio to the ring buffer
-    ringBuffer->AddNewInterleavedFloatData(self.outputBuffer, framesRead, self.numChannels);
+    ringBuffer->AddNewInterleavedFloatData(self.outputBuffer,framesRead, self.numChannels);
     
     if ((self.currentFileTime - self.duration) < 0.01 && framesRead == 0) {
         // modified to allow for auto-stopping. //
@@ -188,11 +188,11 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self pause];
+    
         ExtAudioFileSeek(self.inputFile, thisCurrentTime*self.samplingRate);
-        
         [self clearBuffer];
         [self bufferNewAudio];
-        
+       
         [self play];
     });
 }

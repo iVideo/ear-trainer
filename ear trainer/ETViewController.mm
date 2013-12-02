@@ -23,6 +23,7 @@
 - (IBAction)turnBoostOn:(UIButton *)sender;
 - (IBAction)displayFilterNumber:(id)sender;
 - (IBAction)showNowPlaying:(id)sender;
+- (IBAction)repeatFilter:(id)sender;
 
 @end
 
@@ -36,9 +37,12 @@
     
     // Set slider thumb image
     [self.playbackSlider setThumbImage:[UIImage imageNamed:@"sliderthumb.png"] forState:UIControlStateNormal];
+    if (etManager.fileReader.playing)
+        [self.playAndPauseButton setBackgroundImage:[UIImage imageNamed:@"pausebuttonwhite"] forState:UIControlStateNormal];
+    else if (!etManager.fileReader.playing)
     [self.playAndPauseButton setBackgroundImage:[UIImage imageNamed:@"playbuttonwhite"] forState:UIControlStateNormal];
+    
     self.boostFilter.image = [UIImage imageNamed:@"boostfilter"];
-    [self.nowPlayingView setHidden:YES];
 }
 
 - (void)viewDidLoad
@@ -107,7 +111,7 @@
     self.remainingTime.text = [NSString stringWithFormat:@"-%@", [self timeFormat:(duration - currentTime)]];
    // NSLog(@"current time is: %@", [self timeFormat:currentTime]);
 
-    self.nowPlayingSlider.value = currentTime;
+    self.nowPlayingSlider.value = (int)currentTime;
     
 }
 
@@ -226,10 +230,35 @@
 
 - (IBAction)showNowPlaying:(id)sender {
     
-    if (!self.nowPlayingView.hidden)
-        [self.nowPlayingView setHidden:YES];
+        if (!self.nowPlayingView.hidden)
+        {
+            [self.nowPlayingView setHidden:YES];
+            [UIView animateWithDuration:0.5 animations:^{
+                
+                self.collectionView.frame = CGRectMake(0, 20, 320, 474);
+                
+            } completion:^(BOOL finished) {
+                NSLog(@"Done!");
+            }];
+        }
     else if (self.nowPlayingView.hidden)
-    [self.nowPlayingView setHidden:NO];
+    {
+        
+        [UIView animateWithDuration:0.0 animations:^{
+            
+            self.collectionView.frame = CGRectMake(0, 64, 320, 410);
+            
+        } completion:^(BOOL finished) {
+            NSLog(@"Done!");
+        }];
+        [self.nowPlayingView setHidden:NO];
+    }
+}
+
+- (IBAction)repeatFilter:(id)sender {
+    
+    if([etManager getCurrentFilter] != 5000)
+    [NSTimer scheduledTimerWithTimeInterval:1.0 target:etManager selector:@selector(turnFilterOn) userInfo:nil repeats:NO];
 }
 - (IBAction)nowPlayingSlider:(UISlider *)sender {
     
@@ -267,7 +296,6 @@
 
 -(void)startNowPlayingTimer
 {
-    NSLog(@"FANDOFNAIDF");
     if (_timer == nil)
     {
         _timer = [NSTimer scheduledTimerWithTimeInterval:1.01f target:self selector:@selector(updateNowPlaying) userInfo:nil repeats:YES];
@@ -348,7 +376,11 @@
     
     [self setSwitchStates];
 }
-
+-(void)removeAllFilters
+{
+    [etManager.filterStateHandler.activeFilters removeAllObjects];
+    [self setSwitchStates];
+}
 #pragma mark - Filter screen
 - (IBAction)filterScreen:(id)sender {
     
@@ -406,7 +438,7 @@
 {
     
     
-    if ([etManager getAudioManager].playing)
+    if ([etManager getAudioManager].playing && [etManager getCurrentFilter] != 5000)
     {
         
         NSNumber *temp = [etManager.filterStateHandler.activeFilters objectAtIndex:indexPath.row];
@@ -419,6 +451,8 @@
             NSLog(@"you got it right!!#!#$!#$@#$");
             ETCell *cell = (ETCell *)[collectionView cellForItemAtIndexPath:indexPath];
             [cell.cellBackground setImage:[UIImage imageNamed:@"plaincollectionviewright"]];
+            
+            [self activateFilter:nil];
         }
         else if ([temp integerValue] != [etManager getCurrentFilter] + 10)
         {
@@ -438,18 +472,18 @@
     
 }
 
--(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
-    
-    static NSString *headerViewIdentifier = @"collectionViewTitle";
-    
-    ETHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerViewIdentifier forIndexPath:indexPath];
-    
-    return headerView;
-    
-    
-    
-}
+//-(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+//{
+//    
+//    static NSString *headerViewIdentifier = @"collectionViewTitle";
+//    
+//    ETHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerViewIdentifier forIndexPath:indexPath];
+//    
+//    return headerView;
+//    
+//    
+//    
+//}
 
 
 @end

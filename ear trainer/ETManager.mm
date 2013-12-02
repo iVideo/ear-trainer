@@ -44,6 +44,7 @@
     QFactor = 2.0f;
     initialGain = 0.0f;
     filterOn = 0;
+    currentFilter = 5000;
     
     centerFrequencies[10] = 31.0f;
     centerFrequencies[11] = 40.0f;
@@ -123,7 +124,7 @@
          
      }];
     
-    
+    currentFilter = 5000;
 
 }
 
@@ -196,6 +197,7 @@
 -(int)selectRandomFilter
 {
     // Sets current filter to randomly selected filter. 10 is minused so that the value derived from within 'activeFilters' corresponds to the correct filter inside PEQ[]
+    if (!([self.filterStateHandler.activeFilters count] == 0))
   currentFilter = [self.filterStateHandler selectRandomFilter] - 10;
     
     return currentFilter;
