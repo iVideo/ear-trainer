@@ -202,14 +202,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="NgE-k4-uKy">
-                                        <rect key="frame" x="73" y="31" width="174" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="minimumTrackTintColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <action selector="nowPlayingSlider:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Cjn-Xl-UVu"/>
-                                        </connections>
-                                    </slider>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--:--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2no-J5-tYT">
                                         <rect key="frame" x="36" y="39" width="42" height="15"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -220,7 +212,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="296" verticalHuggingPriority="251" horizontalCompressionResistancePriority="670" text="--:--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kx8-1r-MGL">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="296" verticalHuggingPriority="251" horizontalCompressionResistancePriority="670" misplaced="YES" text="--:--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kx8-1r-MGL">
                                         <rect key="frame" x="253" y="39" width="32" height="15"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
@@ -233,19 +225,21 @@
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cU7-8j-SYv">
+                                        <rect key="frame" x="92" y="39" width="136" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.68235296010971069" green="0.76470595598220825" blue="0.91372555494308472" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="NgE-k4-uKy" secondAttribute="bottom" id="4Hq-KV-K2P"/>
                                     <constraint firstAttribute="trailing" secondItem="kx8-1r-MGL" secondAttribute="trailing" constant="35" id="DtN-q6-uDn"/>
                                     <constraint firstItem="2no-J5-tYT" firstAttribute="baseline" secondItem="kx8-1r-MGL" secondAttribute="baseline" id="Ngi-yI-jx1"/>
                                     <constraint firstItem="kx8-1r-MGL" firstAttribute="top" secondItem="cJT-3q-rBK" secondAttribute="top" constant="39" id="Ny0-Ii-ce3"/>
                                     <constraint firstItem="evK-JW-a2r" firstAttribute="top" secondItem="cJT-3q-rBK" secondAttribute="top" constant="20" symbolic="YES" id="WQu-Tj-FT2"/>
-                                    <constraint firstItem="kx8-1r-MGL" firstAttribute="leading" secondItem="NgE-k4-uKy" secondAttribute="trailing" constant="8" symbolic="YES" id="czO-pd-6Jp"/>
-                                    <constraint firstItem="NgE-k4-uKy" firstAttribute="centerX" secondItem="evK-JW-a2r" secondAttribute="centerX" id="fF5-pt-3mj"/>
                                     <constraint firstItem="evK-JW-a2r" firstAttribute="centerX" secondItem="cJT-3q-rBK" secondAttribute="centerX" id="kBO-rZ-uRR"/>
                                     <constraint firstItem="2no-J5-tYT" firstAttribute="leading" secondItem="cJT-3q-rBK" secondAttribute="leading" constant="36" id="wWW-KE-Lb0"/>
-                                    <constraint firstItem="NgE-k4-uKy" firstAttribute="leading" secondItem="cJT-3q-rBK" secondAttribute="leading" constant="75" id="xue-AZ-rJ0"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -270,16 +264,15 @@
                     </view>
                     <toolbarItems/>
                     <connections>
+                        <outlet property="artistLabel" destination="evK-JW-a2r" id="ea7-VY-ir8"/>
                         <outlet property="collectionView" destination="fjj-J4-x9b" id="a2a-is-gVd"/>
                         <outlet property="elapsedTime" destination="2no-J5-tYT" id="ahK-je-EJn"/>
                         <outlet property="filterNumber" destination="Npx-wh-1rm" id="dB6-4N-qOW"/>
                         <outlet property="inOutImageView" destination="hQr-Yq-v8g" id="bu8-l8-1iG"/>
-                        <outlet property="nowPlayingSlider" destination="NgE-k4-uKy" id="wCF-IQ-fMC"/>
                         <outlet property="nowPlayingView" destination="cJT-3q-rBK" id="Cop-oS-Lc4"/>
                         <outlet property="playAndPauseButton" destination="gWC-z2-SfE" id="xP4-Ee-7eW"/>
-                        <outlet property="playbackSlider" destination="NgE-k4-uKy" id="8dL-g3-NOV"/>
                         <outlet property="remainingTime" destination="kx8-1r-MGL" id="KuN-gR-QRd"/>
-                        <outlet property="songDetailsLabel" destination="evK-JW-a2r" id="hqu-xZ-U2F"/>
+                        <outlet property="songTitleLabel" destination="cU7-8j-SYv" id="oRD-OR-dk0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

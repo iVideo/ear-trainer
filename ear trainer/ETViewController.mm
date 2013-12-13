@@ -43,6 +43,7 @@
     [self.playAndPauseButton setBackgroundImage:[UIImage imageNamed:@"playbuttonwhite"] forState:UIControlStateNormal];
     
     self.boostFilter.image = [UIImage imageNamed:@"boostfilter"];
+    [self.nowPlayingView setHidden:NO];
 }
 
 - (void)viewDidLoad
@@ -160,7 +161,9 @@
     NSString *artist = [[[mediaItemCollection items] objectAtIndex:0] valueForProperty:MPMediaItemPropertyArtist];
     
     
-    self.songDetailsLabel.text = [NSString stringWithFormat:@"%@ - %@", artist, title];
+    self.artistLabel.text = [NSString stringWithFormat:@"%@", artist];
+    self.songTitleLabel.text = [NSString stringWithFormat:@"%@", title];
+
 
     [etManager readAudioFileWithURL:url];
    // self.waveform = [etManager getWaveform];
@@ -234,8 +237,9 @@
         {
             [self.nowPlayingView setHidden:YES];
             [UIView animateWithDuration:0.5 animations:^{
-                
-                self.collectionView.frame = CGRectMake(0, 20, 320, 474);
+                CGRect screenRect = [[UIScreen mainScreen] bounds];
+
+                self.collectionView.frame = CGRectMake(0, 20, 320, screenRect.size.height - 92);
                 
             } completion:^(BOOL finished) {
                 NSLog(@"Done!");
@@ -246,7 +250,9 @@
         
         [UIView animateWithDuration:0.0 animations:^{
             
-            self.collectionView.frame = CGRectMake(0, 64, 320, 410);
+            CGRect screenRect = [[UIScreen mainScreen] bounds];
+            
+            self.collectionView.frame = CGRectMake(0, 64, 320, screenRect.size.height - 158);
             
         } completion:^(BOOL finished) {
             NSLog(@"Done!");
@@ -452,7 +458,6 @@
             ETCell *cell = (ETCell *)[collectionView cellForItemAtIndexPath:indexPath];
             [cell.cellBackground setImage:[UIImage imageNamed:@"plaincollectionviewright"]];
             
-            [self activateFilter:nil];
         }
         else if ([temp integerValue] != [etManager getCurrentFilter] + 10)
         {

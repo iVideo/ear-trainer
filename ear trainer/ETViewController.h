@@ -33,7 +33,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *elapsedTime;
 @property (weak, nonatomic) IBOutlet UILabel *remainingTime;
 @property (weak, nonatomic) IBOutlet UISlider *nowPlayingSlider;
-@property (weak, nonatomic) IBOutlet UILabel *songDetailsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *artistLabel;
+@property (weak, nonatomic) IBOutlet UILabel *songTitleLabel;
+
 
 
 @property (weak, nonatomic) IBOutlet UIButton *playAndPauseButton;
