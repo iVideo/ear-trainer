@@ -34,9 +34,9 @@
                                         </button>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Avp-cM-0Qt"/>
-                                    <barButtonItem width="89" style="plain" id="bCn-Dx-Aoo">
+                                    <barButtonItem width="95" style="plain" id="bCn-Dx-Aoo">
                                         <button key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="598" horizontalCompressionResistancePriority="876" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6qo-eG-Fzc">
-                                            <rect key="frame" x="115" y="7" width="89" height="30"/>
+                                            <rect key="frame" x="112" y="7" width="95" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                             <state key="normal" title="activate filter">
@@ -258,7 +258,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-153" y="41"/>
+            <point key="canvasLocation" x="-133" y="41"/>
         </scene>
         <!--Filter Screen View Controller-->
         <scene sceneID="p27-dn-hYT">

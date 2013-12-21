@@ -110,8 +110,8 @@
     
     
     [self.fileReader setCurrentTime:0.0f];
-    NSLog(@"%f", self.fileReader.currentTime);
-    NSLog(@" current time: %f, duration: %f", floorf(self.fileReader.currentTime), self.fileReader.duration);
+//    NSLog(@"%f", self.fileReader.currentTime);
+//    NSLog(@" current time: %f, duration: %f", floorf(self.fileReader.currentTime), self.fileReader.duration);
     
     [audioManager setOutputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels)
      {

@@ -172,8 +172,6 @@
     
     [[[mediaItemCollection items ]objectAtIndex:0]valueForProperty:MPMediaItemPropertyPlaybackDuration];
     
-    NSLog(@" %@", etManager.fileReader.audioFileURL);
-    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
