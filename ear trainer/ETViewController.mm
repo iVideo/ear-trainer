@@ -21,7 +21,6 @@
 
 - (IBAction)turnCutOn:(UIButton *)sender;
 - (IBAction)turnBoostOn:(UIButton *)sender;
-- (IBAction)displayFilterNumber:(id)sender;
 - (IBAction)showNowPlaying:(id)sender;
 - (IBAction)repeatFilter:(id)sender;
 
@@ -226,11 +225,6 @@
     }
 }
 
-- (IBAction)displayFilterNumber:(id)sender {
-    
-    self.filterNumber.text = [NSString stringWithFormat:@"%i", [etManager getCurrentFilter]];
-}
-
 - (IBAction)showNowPlaying:(id)sender {
     
         if (!self.nowPlayingView.hidden)
@@ -292,7 +286,7 @@
     }
     
     if (!filterOn) {
-        [self.inOutImageView setImage:[UIImage imageNamed:@"out button.png"]];
+        [self.inOutImageView setImage:[UIImage imageNamed:@"out button2.png"]];
     }
     
     

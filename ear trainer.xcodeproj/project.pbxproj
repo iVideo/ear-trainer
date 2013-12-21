@@ -17,6 +17,7 @@
 		C09A9A0F180DB00B001DD5A9 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09A9A0E180DB00B001DD5A9 /* Accelerate.framework */; };
 		C09A9A14180DB1C8001DD5A9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09A9A13180DB1C8001DD5A9 /* AudioToolbox.framework */; };
 		C09A9A17180DB302001DD5A9 /* RingBuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = C09A9A16180DB302001DD5A9 /* RingBuffer.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C0CAD15018650C7A002F261C /* out button2.png in Resources */ = {isa = PBXBuildFile; fileRef = C0CAD14F18650C7A002F261C /* out button2.png */; };
 		C0CB23C618109DB00017994B /* ETWaveformImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CB23C518109DB00017994B /* ETWaveformImageView.m */; };
 		C0DDE1D0180DA5C8005FF890 /* NVAllpassFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DDE1BF180DA5C8005FF890 /* NVAllpassFilter.m */; };
 		C0DDE1D1180DA5C8005FF890 /* NVBandpassFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DDE1C1180DA5C8005FF890 /* NVBandpassFilter.m */; };
@@ -75,6 +76,7 @@
 		C09A9A13180DB1C8001DD5A9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		C09A9A15180DB302001DD5A9 /* RingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RingBuffer.h; sourceTree = "<group>"; };
 		C09A9A16180DB302001DD5A9 /* RingBuffer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RingBuffer.mm; sourceTree = "<group>"; };
+		C0CAD14F18650C7A002F261C /* out button2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "out button2.png"; sourceTree = "<group>"; };
 		C0CB23C418109DB00017994B /* ETWaveformImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ETWaveformImageView.h; sourceTree = "<group>"; };
 		C0CB23C518109DB00017994B /* ETWaveformImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ETWaveformImageView.m; sourceTree = "<group>"; };
 		C0DDE1BE180DA5C8005FF890 /* NVAllpassFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVAllpassFilter.h; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 		C0E46127180D72CF001AAF9B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C0CAD14F18650C7A002F261C /* out button2.png */,
 				C03E9F7F181C53A00011D853 /* sliderthumb.png */,
 				C083EFD2181BF2FC00EE7933 /* out button.png */,
 				C083EFD0181BE2ED00EE7933 /* in button.png */,
@@ -394,6 +397,7 @@
 				C0E4612B180D72CF001AAF9B /* InfoPlist.strings in Resources */,
 				C0E46134180D72CF001AAF9B /* Main.storyboard in Resources */,
 				C083EFD1181BE2ED00EE7933 /* in button.png in Resources */,
+				C0CAD15018650C7A002F261C /* out button2.png in Resources */,
 				C083EFD3181BF2FC00EE7933 /* out button.png in Resources */,
 				C03E9F80181C53A00011D853 /* sliderthumb.png in Resources */,
 			);
