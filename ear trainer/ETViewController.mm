@@ -36,10 +36,15 @@
     
     // Set slider thumb image
     [self.playbackSlider setThumbImage:[UIImage imageNamed:@"sliderthumb.png"] forState:UIControlStateNormal];
+    
     if (etManager.fileReader.playing)
+    {
         [self.playAndPauseButton setBackgroundImage:[UIImage imageNamed:@"pausebuttonwhite"] forState:UIControlStateNormal];
+    }
     else if (!etManager.fileReader.playing)
+    {
     [self.playAndPauseButton setBackgroundImage:[UIImage imageNamed:@"playbuttonwhite"] forState:UIControlStateNormal];
+    }
     
     self.boostFilter.image = [UIImage imageNamed:@"boostfilter"];
     [self.nowPlayingView setHidden:NO];
