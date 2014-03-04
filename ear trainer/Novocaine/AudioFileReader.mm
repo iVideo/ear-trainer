@@ -33,7 +33,7 @@
 }
 
 // redeclaration as readwrite in class continuation
-//@property (nonatomic, copy, readwrite)   NSURL *audioFileURL;
+@property (nonatomic, copy, readwrite)   NSURL *audioFileURL;
 @property (nonatomic, assign, readwrite, getter=getDuration) float duration;
 @property (nonatomic, assign, readwrite) float samplingRate;
 @property (nonatomic, assign, readwrite) UInt32 numChannels;
@@ -47,7 +47,7 @@
 @property (nonatomic, assign) UInt32 numSamplesReadPerPacket;
 @property (nonatomic, assign) UInt32 desiredPrebufferedSamples;
 @property (nonatomic, assign) SInt64 currentFileTime;
-@property (nonatomic, strong) dispatch_source_t callbackTimer;
+@property (nonatomic, assign) dispatch_source_t callbackTimer;
 
 - (void)bufferNewAudio;
 
@@ -158,13 +158,13 @@
     // Read the audio
     UInt32 framesRead = self.numSamplesReadPerPacket;
     ExtAudioFileRead(self.inputFile, &framesRead, &incomingAudio);
-
+    
     // Update where we are in the file
     ExtAudioFileTell(self.inputFile, &frameOffset);
     self.currentFileTime = (float)frameOffset / self.samplingRate;
     
     // Add the new audio to the ring buffer
-    ringBuffer->AddNewInterleavedFloatData(self.outputBuffer,framesRead, self.numChannels);
+    ringBuffer->AddNewInterleavedFloatData(self.outputBuffer, framesRead, self.numChannels);
     
     if ((self.currentFileTime - self.duration) < 0.01 && framesRead == 0) {
         // modified to allow for auto-stopping. //
@@ -186,15 +186,9 @@
 
 - (void)setCurrentTime:(float)thisCurrentTime
 {
-//    dispatch_async(dispatch_get_main_queue(), ^{
-        [self pause];
-    
+    dispatch_async(dispatch_get_main_queue(), ^{
         ExtAudioFileSeek(self.inputFile, thisCurrentTime*self.samplingRate);
-        [self clearBuffer];
-        [self bufferNewAudio];
-       
-        [self play];
-    //});
+    });
 }
 
 - (float)getDuration
@@ -232,9 +226,9 @@
                 }
                 
                 // Asynchronously fill up the buffer (if it needs filling)
-                //dispatch_async(dispatch_get_main_queue(), ^{
+                dispatch_async(dispatch_get_main_queue(), ^{
                     [self bufferNewAudio];
-                //});
+                });
                 
             }
             
@@ -272,9 +266,10 @@
 {
     // Release the dispatch timer because it holds a reference to this class instance
     [self pause];
-//    if (self.callbackTimer) {
-//        dispatch_release(self.callbackTimer);
-//    }
+    if (self.callbackTimer) {
+        dispatch_release(self.callbackTimer);
+        self.callbackTimer = nil;
+    }
 }
 
 

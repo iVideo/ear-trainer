@@ -12,6 +12,7 @@
 #import "ETFilterScreenViewController.h"
 #import "ETCell.h"
 #import "ETHeaderView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface ETViewController : UIViewController <MPMediaPickerControllerDelegate, UITextFieldDelegate, ETManagerDelegate, ETFilterScreenViewControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
 {
@@ -22,19 +23,18 @@
 @property (weak, nonatomic) IBOutlet UITextField *gainTextField;
 @property (weak, nonatomic) IBOutlet UILabel *filterNumber;
 @property (weak, nonatomic) IBOutlet UIImageView *inOutImageView;
-@property (weak, nonatomic) IBOutlet UISlider *playbackSlider;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 - (IBAction)showMediaPicker:(id)sender;
 - (IBAction)Play:(id)sender;
 - (IBAction)activateFilter:(UIButton *)sender;
 - (IBAction)nowPlayingSlider:(UISlider *)sender;
+- (IBAction)toggleControlsView:(BOOL)controlsViewHidden;
 
 @property (weak, nonatomic) IBOutlet UILabel *elapsedTime;
 @property (weak, nonatomic) IBOutlet UILabel *remainingTime;
 @property (weak, nonatomic) IBOutlet UISlider *nowPlayingSlider;
-@property (weak, nonatomic) IBOutlet UILabel *artistLabel;
-@property (weak, nonatomic) IBOutlet UILabel *songTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *songLabel;
 
 
 

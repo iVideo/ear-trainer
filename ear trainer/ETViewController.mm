@@ -13,15 +13,11 @@
     BOOL negative;
     NSTimer *_timer;
 }
-@property (weak, nonatomic) IBOutlet UIButton *cutOnOff;
-@property (weak, nonatomic) IBOutlet UIButton *boostOnOff;
-@property (weak, nonatomic) IBOutlet UIImageView *boostFilter;
+
 @property (weak, nonatomic) IBOutlet UIView *nowPlayingView;
+@property (weak, nonatomic) IBOutlet UIView *controlsView;
+@property (weak, nonatomic) IBOutlet UIToolbar *bottomBar;
 
-
-- (IBAction)turnCutOn:(UIButton *)sender;
-- (IBAction)turnBoostOn:(UIButton *)sender;
-- (IBAction)showNowPlaying:(id)sender;
 - (IBAction)repeatFilter:(id)sender;
 
 @end
@@ -35,8 +31,9 @@
     
     
     // Set slider thumb image
-    [self.playbackSlider setThumbImage:[UIImage imageNamed:@"sliderthumb.png"] forState:UIControlStateNormal];
+    //[self.nowPlayingSlider setThumbImage:[UIImage imageNamed:@"sliderthumb.png"] forState:UIControlStateNormal];
     
+    //Set play/pause button image
     if (etManager.fileReader.playing)
     {
         [self.playAndPauseButton setBackgroundImage:[UIImage imageNamed:@"pausebuttonwhite"] forState:UIControlStateNormal];
@@ -45,9 +42,7 @@
     {
     [self.playAndPauseButton setBackgroundImage:[UIImage imageNamed:@"playbuttonwhite"] forState:UIControlStateNormal];
     }
-    
-    self.boostFilter.image = [UIImage imageNamed:@"boostfilter"];
-    [self.nowPlayingView setHidden:NO];
+
 }
 
 - (void)viewDidLoad
@@ -62,9 +57,23 @@
         
         [self.gainTextField setDelegate:self];
         negative = NO;                          // Cut or boost, set to boost initially
+        
+        //self.controlsView.hidden = 1;
+        
+        etManager.controlsViewHidden = 0;
+
+        
     }
     
-//    UIBarButtonItem *musicLib = [[UIBarButtonItem alloc] init];
+    CGRect frame = CGRectMake(0, 500, 320, self.view.frame.size.height - self.nowPlayingView.frame.size.height - self.bottomBar.frame.size.height);
+    self.collectionView.frame = frame;
+
+    [self showOrHideControlsViewOnLoad:etManager.controlsViewHidden];
+    
+    [self.nowPlayingView.layer setBorderWidth:0.5f];
+    self.nowPlayingView.layer.borderColor = [[UIColor blackColor] CGColor];
+    
+    //    UIBarButtonItem *musicLib = [[UIBarButtonItem alloc] init];
 //    musicLib.image = [UIImage imageNamed:@"note"];
     
     
@@ -75,6 +84,79 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)showOrHideControlsViewOnLoad:(BOOL)controlsViewHidden;
+{
+    if (controlsViewHidden) {
+        
+        CGRect frame = CGRectMake(0, 0, 320, 500);
+        self.controlsView.frame = frame;
+      
+    }
+    
+    else if (!controlsViewHidden)
+    {
+        
+        CGRect frame = CGRectMake(0, CGRectGetMaxY(self.nowPlayingView.frame), 320, self.controlsView.frame.size.height);
+            self.controlsView.frame = frame;
+
+        
+    }
+    
+}
+- (IBAction)toggleControlsView:(BOOL)controlsViewHidden;
+{
+    controlsViewHidden = etManager.controlsViewHidden;
+    
+    if (controlsViewHidden) {
+      
+        CGRect frame = CGRectMake(0, 0, 320, 50);
+        frame.origin.y = CGRectGetMaxY(self.nowPlayingView.frame) - frame.size.height;
+        self.controlsView.frame = frame;
+        
+        
+        [self.nowPlayingView.superview insertSubview:self.controlsView belowSubview:self.nowPlayingView];
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            CGRect frame = _controlsView.frame;
+            frame.origin.y = CGRectGetMaxY(self.nowPlayingView.frame);
+            self.controlsView.frame = frame;
+            
+            CGRect cViewFrame = self.collectionView.frame;
+            cViewFrame.origin.y = cViewFrame.origin.y - self.controlsView.frame
+            .size.height;
+            cViewFrame.size.height = cViewFrame.size.height + self.controlsView.frame.size.height;
+            self.collectionView.frame = cViewFrame;
+            }];
+        
+        controlsViewHidden = 0;
+        etManager.controlsViewHidden = controlsViewHidden;
+    }
+    
+    else if (!controlsViewHidden)
+    {
+        
+        NSLog(@"HIDE");
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            CGRect frame = _controlsView.frame;
+            frame.origin.y = CGRectGetMaxY(self.nowPlayingView.frame) - frame.size.height;
+            self.controlsView.frame = frame;
+            
+            CGRect cViewFrame = self.collectionView.frame;
+            cViewFrame.origin.y = cViewFrame.origin.y - self.controlsView.frame
+            .size.height;
+            cViewFrame.size.height = cViewFrame.size.height + self.controlsView.frame.size.height;
+            self.collectionView.frame = cViewFrame;
+
+    }];
+        
+        controlsViewHidden = 1;
+        etManager.controlsViewHidden = controlsViewHidden;
+
+    }
+    
 }
 
 #pragma mark - Now Playing methods
@@ -117,6 +199,19 @@
    // NSLog(@"current time is: %@", [self timeFormat:currentTime]);
 
     self.nowPlayingSlider.value = (int)currentTime;
+    
+    if (duration - currentTime < 1) {
+        self.elapsedTime.text = [NSString stringWithFormat:@"--:--"];
+        self.remainingTime.text = [NSString stringWithFormat:@"--:--"];
+        [etManager.fileReader pause];
+        [[etManager getAudioManager] pause];
+        
+        [self.playAndPauseButton setBackgroundImage:[UIImage imageNamed:@"playbuttonwhite"] forState:UIControlStateNormal];
+        
+        etManager.fileReader.currentTime = 0.0f;
+        self.nowPlayingSlider.value = 0.0f;
+        
+    }
     
 }
 
@@ -165,8 +260,7 @@
     NSString *artist = [[[mediaItemCollection items] objectAtIndex:0] valueForProperty:MPMediaItemPropertyArtist];
     
     
-    self.artistLabel.text = [NSString stringWithFormat:@"%@", artist];
-    self.songTitleLabel.text = [NSString stringWithFormat:@"%@", title];
+    self.songLabel.text = [NSString stringWithFormat:@"%@ - %@", artist, title];
 
 
     [etManager readAudioFileWithURL:url];
@@ -205,58 +299,36 @@
     }
 }
 
-- (IBAction)turnCutOn:(UIButton *)sender {
-    
-    if(negative != YES)
-    {
-        negative = YES;
-        [self textFieldDidEndEditing:self.gainTextField];
-       
-        [self.cutOnOff setBackgroundImage:[UIImage imageNamed:@"onswitch"] forState:UIControlStateNormal];
-        [self.boostOnOff setBackgroundImage:[UIImage imageNamed:@"offswitch"] forState:UIControlStateNormal];
-    }
-}
 
-- (IBAction)turnBoostOn:(UIButton *)sender {
-    
-    if(negative != NO)
-    {
-        negative = NO;
-        [self textFieldDidEndEditing:self.gainTextField];
-        [self.cutOnOff setBackgroundImage:[UIImage imageNamed:@"offswitch"] forState:UIControlStateNormal];
-        [self.boostOnOff setBackgroundImage:[UIImage imageNamed:@"onswitch"] forState:UIControlStateNormal];
-    }
-}
-
-- (IBAction)showNowPlaying:(id)sender {
-    
-        if (!self.nowPlayingView.hidden)
-        {
-            [self.nowPlayingView setHidden:YES];
-            [UIView animateWithDuration:0.5 animations:^{
-                CGRect screenRect = [[UIScreen mainScreen] bounds];
-
-                self.collectionView.frame = CGRectMake(0, 20, 320, screenRect.size.height - 92);
-                
-            } completion:^(BOOL finished) {
-                NSLog(@"Done!");
-            }];
-        }
-    else if (self.nowPlayingView.hidden)
-    {
-        
-        [UIView animateWithDuration:0.0 animations:^{
-            
-            CGRect screenRect = [[UIScreen mainScreen] bounds];
-            
-            self.collectionView.frame = CGRectMake(0, 64, 320, screenRect.size.height - 158);
-            
-        } completion:^(BOOL finished) {
-            NSLog(@"Done!");
-        }];
-        [self.nowPlayingView setHidden:NO];
-    }
-}
+//- (IBAction)showNowPlaying:(id)sender {
+//    
+//        if (!self.nowPlayingView.hidden)
+//        {
+//            [self.nowPlayingView setHidden:YES];
+//            [UIView animateWithDuration:0.5 animations:^{
+//                CGRect screenRect = [[UIScreen mainScreen] bounds];
+//
+//                self.collectionView.frame = CGRectMake(0, 20, screenRect.size.width, screenRect.size.height - 92);
+//                
+//            } completion:^(BOOL finished) {
+//                NSLog(@"Done!");
+//            }];
+//        }
+//    else if (self.nowPlayingView.hidden)
+//    {
+//        
+//        [UIView animateWithDuration:0.0 animations:^{
+//            
+//            CGRect screenRect = [[UIScreen mainScreen] bounds];
+//            
+//            self.collectionView.frame = CGRectMake(0, 64, screenRect.size.width, screenRect.size.height - 158);
+//            
+//        } completion:^(BOOL finished) {
+//            NSLog(@"Done!");
+//        }];
+//        [self.nowPlayingView setHidden:NO];
+//    }
+//}
 
 - (IBAction)repeatFilter:(id)sender {
     
@@ -301,7 +373,7 @@
 {
     if (_timer == nil)
     {
-        _timer = [NSTimer scheduledTimerWithTimeInterval:1.01f target:self selector:@selector(updateNowPlaying) userInfo:nil repeats:YES];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateNowPlaying) userInfo:nil repeats:YES];
     }
     
 }
@@ -384,15 +456,20 @@
     [etManager.filterStateHandler.activeFilters removeAllObjects];
     [self setSwitchStates];
 }
+
+-(float)getUserGain
+{
+    return [etManager getUserGain];
+}
+
 #pragma mark - Filter screen
 - (IBAction)filterScreen:(id)sender {
     
+    [self dehighlightcollectionviewcell];
     //UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     ETFilterScreenViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"FilterScreen"];
     
     [vc setDelegate:self];
-    
-    
     
     [self presentViewController:vc animated:YES completion:nil];
     
@@ -448,12 +525,19 @@
         
         NSLog(@" %@", temp);
         
+        
+        // If user selects the correct frequency, paint cell green and go onto next filter
         if ([temp integerValue] == [etManager getCurrentFilter] + 10)
         {
         
             NSLog(@"you got it right!!#!#$!#$@#$");
             ETCell *cell = (ETCell *)[collectionView cellForItemAtIndexPath:indexPath];
             [cell.cellBackground setImage:[UIImage imageNamed:@"plaincollectionviewright"]];
+            
+            [etManager selectRandomFilter];
+            [NSTimer scheduledTimerWithTimeInterval:1.0 target:etManager selector:@selector(turnFilterOn) userInfo:nil repeats:NO];
+            [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(dehighlightcollectionviewcell) userInfo:nil repeats:NO];
+
             
         }
         else if ([temp integerValue] != [etManager getCurrentFilter] + 10)
@@ -465,6 +549,24 @@
         }
         
     }
+}
+
+-(void)dehighlightcollectionviewcell
+{
+    
+    for (ETCell *cell in self.collectionView.visibleCells) {
+        
+        [cell.cellBackground setImage:[UIImage imageNamed:@"plaincollectionview"]];
+
+    }
+//    NSArray *cells = [_collectionView visibleCells];
+//    
+//    for (int i=0; i < [cells count]; i++) {
+//        
+//        [cells[i] setImage:[UIImage imageNamed:@"plaincollectionview"]];
+//
+//    }
+    
 }
 -(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -486,6 +588,8 @@
 //    
 //    
 //}
+
+
 
 
 @end

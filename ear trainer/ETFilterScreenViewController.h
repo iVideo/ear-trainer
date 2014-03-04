@@ -20,6 +20,7 @@
 -(void)updateGainValue:(float)number;
 -(BOOL)getNegative;
 -(void)setNegative:(BOOL)booleanValue;
+-(float)getUserGain;
 
 @optional
 
@@ -31,6 +32,8 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
+@property (weak, nonatomic) IBOutlet UIView *controlsView;
+
 @property (weak) id <ETFilterScreenViewControllerDelegate> delegate;
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tap;
 

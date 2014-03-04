@@ -40,7 +40,7 @@
 @property ETWaveformImageView *waveformView;
 @property (weak) id <ETManagerDelegate> delegate;
 @property (strong, nonatomic) ETFilterStateHandler *filterStateHandler;
-
+@property BOOL controlsViewHidden;
 
 +(ETManager *)sharedInstance;
 
@@ -58,5 +58,6 @@
 -(void)turnFilterOn;
 -(float)getFrequencyOfActiveFilters:(NSNumber *)filterNumber;
 -(int)getCurrentFilter;
+-(float)getUserGain;
 
 @end

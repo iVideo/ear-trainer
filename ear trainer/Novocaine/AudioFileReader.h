@@ -33,11 +33,10 @@
 @property (nonatomic, assign, getter=getCurrentTime, setter=setCurrentTime:) float currentTime;
 @property (nonatomic, copy) NovocaineInputBlock readerBlock;
 @property (nonatomic, assign) float latency;
-@property (nonatomic, copy, readwrite)   NSURL *audioFileURL;
-
 
 // ----- Read-only ------
 
+@property (nonatomic, copy, readonly)   NSURL *audioFileURL;
 @property (nonatomic, assign, readonly, getter=getDuration) float duration;
 @property (nonatomic, assign, readonly) float samplingRate;
 @property (nonatomic, assign, readonly) UInt32 numChannels;
@@ -50,8 +49,6 @@
 // The buffer'll fill at the speed the audio is normally being played.
 
 - (void)retrieveFreshAudio:(float *)buffer numFrames:(UInt32)thisNumFrames numChannels:(UInt32)thisNumChannels;
-- (void)clearBuffer;
-
 
 - (void)play;
 - (void)pause;

@@ -45,6 +45,7 @@
     initialGain = 0.0f;
     filterOn = 0;
     currentFilter = 5000;
+    userGain = 0;
     
     centerFrequencies[10] = 31.0f;
     centerFrequencies[11] = 40.0f;
@@ -110,6 +111,7 @@
     
     
     [self.fileReader setCurrentTime:0.0f];
+    
 //    NSLog(@"%f", self.fileReader.currentTime);
 //    NSLog(@" current time: %f, duration: %f", floorf(self.fileReader.currentTime), self.fileReader.duration);
     
@@ -161,10 +163,10 @@
 
 -(void)setGainValue:(float)value negative:(BOOL)negative
 {
-    if (negative) {
-        
-        value *= -1;
-    }
+//    if (negative) {
+//        
+//        value *= -1;
+//    }
     
     //NSNumber *gainValue = [NSNumber numberWithFloat:value];
     
@@ -215,7 +217,10 @@
     return PEQ[filterNo - 10].centerFrequency;
     
 }
-
+-(float)getUserGain
+{
+    return userGain;
+}
 #pragma mark - Singleton Instance
 +(ETManager *)sharedInstance
 {
