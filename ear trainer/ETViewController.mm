@@ -21,6 +21,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *repeatFilterButton;
 @property (weak, nonatomic) IBOutlet UIView *controlsView;
 @property (weak, nonatomic) IBOutlet UILabel *inoutButtonLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewToolbarVerticalSpaceConstraint;
+@property (weak, nonatomic) IBOutlet UIButton *showHideControlsButton;
+
+
 
 - (IBAction)repeatFilter:(id)sender;
 
@@ -46,7 +50,10 @@
     {
     [self.playAndPauseButton setBackgroundImage:[UIImage imageNamed:@"playbuttonwhite"] forState:UIControlStateNormal];
     }
-
+    
+    
+    
+    [self showOrHideControlsViewOnLoad:etManager.controlsViewHidden];
 }
 
 - (void)viewDidLoad
@@ -64,15 +71,12 @@
         
         
         etManager.controlsViewHidden = 0;
-    
-
-        
     }
     
 //    CGRect frame = CGRectMake(0, 500, 320, self.view.frame.size.height - self.nowPlayingView.frame.size.height - self.bottomBar.frame.size.height);
 //    self.collectionView.frame = frame;
 
-   [self showOrHideControlsViewOnLoad:etManager.controlsViewHidden];
+   
     
     [self.nowPlayingView.layer setBorderWidth:0.5f];
     self.nowPlayingView.layer.borderColor = [[UIColor blackColor] CGColor];
@@ -105,36 +109,35 @@
 -(void)showOrHideControlsViewOnLoad:(BOOL)controlsViewHidden;
 {
     
-    NSLog(@"ADFIUADMFIUDMSF");
+    NSLog(@"%hhd", controlsViewHidden);
     if (controlsViewHidden) {
+ 
+//            CGRect frame = CGRectMake(0, self.controlsView.frame.origin.y + self.controlsView.frame.size.height, 320, self.controlsView.frame.size.height);
+//            self.controlsView.frame = frame;
         
-        [UIView animateWithDuration:0.5 animations:^{
-            CGRect frame = self.controlsView.frame;
-            frame.origin.y = self.bottomBar.frame.origin.y - frame.size.height;
-            self.controlsView.frame = frame;
-            
-        }];
-      
+        self.viewToolbarVerticalSpaceConstraint.constant = 50;
+        
+        [self.view layoutIfNeeded];
+        
+      [self.showHideControlsButton setTitle:@"Show controls" forState:UIControlStateNormal];
+    }
+    else if (!controlsViewHidden) {
+        
+        //            CGRect frame = CGRectMake(0, self.controlsView.frame.origin.y + self.controlsView.frame.size.height, 320, self.controlsView.frame.size.height);
+        //            self.controlsView.frame = frame;
+        
+        self.viewToolbarVerticalSpaceConstraint.constant = 0;
+        
+        [self.view layoutIfNeeded];
+        
+        [self.showHideControlsButton setTitle:@"Hide controls" forState:UIControlStateNormal];
+        
     }
     
-    else if (!controlsViewHidden)
-    {
-        
-        NSLog(@"HIDE");
-        
-        //[self.bottomBar.superview insertSubview:self.controlsView belowSubview:self.bottomBar];
-        
-        [UIView animateWithDuration:0.5 animations:^{
-            
-            CGRect frame = CGRectMake(0, self.controlsView.frame.origin.y + self.controlsView.frame.size.height, 320, self.controlsView.frame.size.height);
-            self.controlsView.frame = frame;
-            
-        }];
-     
-        
-    }
+   
     
 }
+
 - (IBAction)toggleControlsView:(BOOL)controlsViewHidden;
 {
     controlsViewHidden = etManager.controlsViewHidden;
@@ -148,14 +151,14 @@
             
             }];
         
+        [self.showHideControlsButton setTitle:@"Hide controls" forState:UIControlStateNormal];
+        
         controlsViewHidden = 0;
         etManager.controlsViewHidden = controlsViewHidden;
     }
     
     else if (!controlsViewHidden)
     {
-        
-        NSLog(@"HIDE");
         
         //[self.bottomBar.superview insertSubview:self.controlsView belowSubview:self.bottomBar];
         
@@ -165,6 +168,8 @@
             self.controlsView.frame = frame;
 
     }];
+        
+        [self.showHideControlsButton setTitle:@"Show controls" forState:UIControlStateNormal];
         
         controlsViewHidden = 1;
         etManager.controlsViewHidden = controlsViewHidden;
