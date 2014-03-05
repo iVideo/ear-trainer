@@ -35,10 +35,7 @@
     
     // Register for keyboard notifications
     [self registerForKeyboardNotifications];
-    
-    
-  //  self.scrollView.contentSize = CGSizeMake(320, 1100);
-    //self.scrollView.frame = CGRectMake(0, 0, 320, 300);
+ 
     self.tap.enabled = NO;                   // Tap recognizer for when keyboard is up (default = disabled)
     [self.gainTextField setDelegate:self];
     
@@ -58,6 +55,12 @@
         
     }
     
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, 40, 0.0);
+    self.scrollView.contentInset = contentInsets;
 }
 - (void)viewDidDisappear:(BOOL)animated
 {
