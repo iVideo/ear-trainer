@@ -31,7 +31,10 @@
 
 @implementation ETManager
 
-
+-(BOOL)getFilterOn
+{
+    return filterOn;
+}
 
 -(void)setUpAudio
 {

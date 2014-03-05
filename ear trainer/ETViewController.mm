@@ -15,8 +15,12 @@
 }
 
 @property (weak, nonatomic) IBOutlet UIView *nowPlayingView;
-@property (weak, nonatomic) IBOutlet UIView *controlsView;
+//@property (weak, nonatomic) IBOutlet UIView *controlsView;
 @property (weak, nonatomic) IBOutlet UIToolbar *bottomBar;
+@property (weak, nonatomic) IBOutlet UIButton *nextFilterButton;
+@property (weak, nonatomic) IBOutlet UIButton *repeatFilterButton;
+@property (weak, nonatomic) IBOutlet UIView *controlsView;
+@property (weak, nonatomic) IBOutlet UILabel *inoutButtonLabel;
 
 - (IBAction)repeatFilter:(id)sender;
 
@@ -53,25 +57,37 @@
         [etManager setUpAudio];
         [etManager createFilters];
         [etManager setDelegate:self];
-        [self setInAndOutImageView:NO];         // Set the filter in/out image to 'OUT'
+        [self setInAndOutImageView:[etManager getFilterOn]];     // Set the filter in/out image to 'OUT'
         
         [self.gainTextField setDelegate:self];
         negative = NO;                          // Cut or boost, set to boost initially
         
-        //self.controlsView.hidden = 1;
         
         etManager.controlsViewHidden = 0;
+    
 
         
     }
     
-    CGRect frame = CGRectMake(0, 500, 320, self.view.frame.size.height - self.nowPlayingView.frame.size.height - self.bottomBar.frame.size.height);
-    self.collectionView.frame = frame;
+//    CGRect frame = CGRectMake(0, 500, 320, self.view.frame.size.height - self.nowPlayingView.frame.size.height - self.bottomBar.frame.size.height);
+//    self.collectionView.frame = frame;
 
-    [self showOrHideControlsViewOnLoad:etManager.controlsViewHidden];
+   [self showOrHideControlsViewOnLoad:etManager.controlsViewHidden];
     
     [self.nowPlayingView.layer setBorderWidth:0.5f];
     self.nowPlayingView.layer.borderColor = [[UIColor blackColor] CGColor];
+    
+    [self.controlsView.layer setBorderWidth:1.0f];
+    //[self.controlsView.layer setBorderColor:[UIColor colorWithRed:26/255.0 green:155/255.0 blue:252/255.0 alpha:1.0f].CGColor];
+    [self.controlsView.layer setBorderColor:[UIColor colorWithRed:197/255.0 green:200/255.0 blue:205/255.0 alpha:1.0f].CGColor];
+    
+    UIColor *buttonsColor = [UIColor colorWithRed:26/255.0 green:155/255.0 blue:252/255.0 alpha:1.0f];
+    [self.nextFilterButton.layer setBackgroundColor:buttonsColor.CGColor];
+    [self.repeatFilterButton.layer setBackgroundColor:buttonsColor.CGColor];
+    
+    self.nextFilterButton.layer.cornerRadius = 3;
+    self.repeatFilterButton.layer.cornerRadius = 3;
+
     
     //    UIBarButtonItem *musicLib = [[UIBarButtonItem alloc] init];
 //    musicLib.image = [UIImage imageNamed:@"note"];
@@ -88,19 +104,33 @@
 
 -(void)showOrHideControlsViewOnLoad:(BOOL)controlsViewHidden;
 {
+    
+    NSLog(@"ADFIUADMFIUDMSF");
     if (controlsViewHidden) {
         
-        CGRect frame = CGRectMake(0, 0, 320, 500);
-        self.controlsView.frame = frame;
+        [UIView animateWithDuration:0.5 animations:^{
+            CGRect frame = self.controlsView.frame;
+            frame.origin.y = self.bottomBar.frame.origin.y - frame.size.height;
+            self.controlsView.frame = frame;
+            
+        }];
       
     }
     
     else if (!controlsViewHidden)
     {
         
-        CGRect frame = CGRectMake(0, CGRectGetMaxY(self.nowPlayingView.frame), 320, self.controlsView.frame.size.height);
+        NSLog(@"HIDE");
+        
+        //[self.bottomBar.superview insertSubview:self.controlsView belowSubview:self.bottomBar];
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            
+            CGRect frame = CGRectMake(0, self.controlsView.frame.origin.y + self.controlsView.frame.size.height, 320, self.controlsView.frame.size.height);
             self.controlsView.frame = frame;
-
+            
+        }];
+     
         
     }
     
@@ -111,23 +141,11 @@
     
     if (controlsViewHidden) {
       
-        CGRect frame = CGRectMake(0, 0, 320, 50);
-        frame.origin.y = CGRectGetMaxY(self.nowPlayingView.frame) - frame.size.height;
-        self.controlsView.frame = frame;
-        
-        
-        [self.nowPlayingView.superview insertSubview:self.controlsView belowSubview:self.nowPlayingView];
-        
         [UIView animateWithDuration:0.5 animations:^{
-            CGRect frame = _controlsView.frame;
-            frame.origin.y = CGRectGetMaxY(self.nowPlayingView.frame);
+            CGRect frame = self.controlsView.frame;
+            frame.origin.y = self.bottomBar.frame.origin.y - frame.size.height;
             self.controlsView.frame = frame;
             
-            CGRect cViewFrame = self.collectionView.frame;
-            cViewFrame.origin.y = cViewFrame.origin.y - self.controlsView.frame
-            .size.height;
-            cViewFrame.size.height = cViewFrame.size.height + self.controlsView.frame.size.height;
-            self.collectionView.frame = cViewFrame;
             }];
         
         controlsViewHidden = 0;
@@ -139,16 +157,12 @@
         
         NSLog(@"HIDE");
         
+        //[self.bottomBar.superview insertSubview:self.controlsView belowSubview:self.bottomBar];
+        
         [UIView animateWithDuration:0.5 animations:^{
-            CGRect frame = _controlsView.frame;
-            frame.origin.y = CGRectGetMaxY(self.nowPlayingView.frame) - frame.size.height;
-            self.controlsView.frame = frame;
             
-            CGRect cViewFrame = self.collectionView.frame;
-            cViewFrame.origin.y = cViewFrame.origin.y - self.controlsView.frame
-            .size.height;
-            cViewFrame.size.height = cViewFrame.size.height + self.controlsView.frame.size.height;
-            self.collectionView.frame = cViewFrame;
+            CGRect frame = CGRectMake(0, self.controlsView.frame.origin.y + self.controlsView.frame.size.height, 320, self.controlsView.frame.size.height);
+            self.controlsView.frame = frame;
 
     }];
         
@@ -341,6 +355,9 @@
 
 }
 
+- (IBAction)show {
+}
+
 -(BOOL)getNegative
 {
     return negative;
@@ -357,11 +374,15 @@
     
     if (filterOn) {
         
-        [self.inOutImageView setImage:[UIImage imageNamed:@"in button.png"]];
+        [self.inOutImageView setImage:[UIImage imageNamed:@"in buttonnotext.png"]];
+        self.inoutButtonLabel.text = @"IN";
+        
     }
     
     if (!filterOn) {
-        [self.inOutImageView setImage:[UIImage imageNamed:@"out button2.png"]];
+        [self.inOutImageView setImage:[UIImage imageNamed:@"out buttonnotext.png"]];
+        self.inoutButtonLabel.text = @"OUT";
+
     }
     
     

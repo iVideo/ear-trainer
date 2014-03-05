@@ -59,5 +59,6 @@
 -(float)getFrequencyOfActiveFilters:(NSNumber *)filterNumber;
 -(int)getCurrentFilter;
 -(float)getUserGain;
+-(BOOL)getFilterOn;
 
 @end
